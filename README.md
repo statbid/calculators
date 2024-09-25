@@ -10,15 +10,15 @@ These calculators are made available under the Apache License, and we encourage 
    - **Purpose**: Helps calculate the Cost of Sale (COS) by considering various business metrics such as average order value, lifetime revenue, cost of goods sold, shipping costs, and other transaction-related expenses.
    - **Ideal for**: Businesses wanting to understand the efficiency of their ad spend and optimize for profitability.
 
-### 2. **Hypothetical Budget Change Calculator**
+### 2. [**Hypothetical Budget Change Calculator**](https://github.com/statbid/calculators/blob/main/hypothetical-budget-change.html)
    - **Purpose**: Assists in estimating the impact of changing marketing budgets on COS and revenue. It allows users to input their current spend and revenue and explore the effects of potential budget changes.
    - **Ideal for**: Marketing teams looking to forecast the outcome of budget adjustments and incremental spend.
 
-### 3. **Hypothetical COS Change Calculator**
+### 3. [**Hypothetical COS Change Calculator**](https://github.com/statbid/calculators/blob/main/hypothetical-cos-change.html)
    - **Purpose**: Provides insights into how changes in COS can affect spend, revenue, and profitability. It helps users visualize the effects of different COS targets on their overall marketing efficiency.
    - **Ideal for**: Businesses aiming to adjust their marketing strategies to achieve desired COS targets and assess the impact on revenue.
 
-### 4. **Incrementality Test Budget & Length Calculator**
+### 4. [**Incrementality Test Budget & Length Calculator**](https://github.com/statbid/calculators/blob/main/incrementality-test-length.html)
    - **Purpose**: Estimates the required budget and time length for running an incrementality test to determine the added value of advertising. It helps calculate the time needed to see a measurable lift in performance.
    - **Ideal for**: Marketing professionals conducting incrementality tests to measure the effectiveness of their ad spend.
 
