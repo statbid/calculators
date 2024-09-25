@@ -1,0 +1,196 @@
+<!-- Include jQuery and autoNumeric libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/2.0.10/autoNumeric.js"></script>
+
+<div id="metric_calculator">
+    <div class="metric_calculator_title">COS Calculator</div>
+    <div class="metric_calculator_divider"></div>
+
+    <div class="metric_calculator_inputs">
+        <div class="metric_calculator_name_section">Business Metrics</div>
+        <div class="metric_calculator_input_section">
+
+            <!-- Average Order Value -->
+            <div class="metric_calculator_row">
+                <div class="metric_calculator_cell">Average Order Value</div>
+                <div class="metric_calculator_cell">
+                    <input type="text" id="metric_order" class="metric_us" value="200">
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <!-- Average Lifetime Revenue -->
+            <div class="metric_calculator_row">
+                <div class="metric_calculator_cell">Average Lifetime Revenue</div>
+                <div class="metric_calculator_cell">
+                    <input type="text" id="metric_revenue" class="metric_us" value="250">
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+
+        <div class="metric_calculator_input_section">
+            <!-- Average Cost of Goods Sold -->
+            <div class="metric_calculator_row">
+                <div class="metric_calculator_cell">Average Cost of Goods Sold</div>
+                <div class="metric_calculator_cell">
+                    <input type="text" id="metric_goods" class="metric_percent" value="50">
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <!-- Average Shipping Costs -->
+            <div class="metric_calculator_row">
+                <div class="metric_calculator_cell">Average Shipping Costs</div>
+                <div class="metric_calculator_cell">
+                    <input type="text" id="metric_ship" class="metric_percent" value="12">
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+
+        <div class="metric_calculator_input_section">
+            <!-- Average CC / Processing Fees -->
+            <div class="metric_calculator_row">
+                <div class="metric_calculator_cell">Average CC / Processing Fees</div>
+                <div class="metric_calculator_cell">
+                    <input type="text" id="metric_fee" class="metric_percent" value="2.9">
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <!-- Other Per-Transaction Expenses -->
+            <div class="metric_calculator_row">
+                <div class="metric_calculator_cell">Other Per-Transaction Expenses</div>
+                <div class="metric_calculator_cell">
+                    <input type="text" id="metric_expens" class="metric_percent" value="0">
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="metric_calculator_inputs">
+        <div class="metric_calculator_name_section">Optimization Options</div>
+        <div class="metric_calculator_input_section metric_calculator_optimization">
+
+            <!-- Optimize for Initial or Lifetime profit -->
+            <div class="metric_calculator_row">
+                <div class="metric_calculator_cell">Optimize for Initial or Lifetime profit?</div>
+                <div class="metric_calculator_cell">
+                    <div class="metric_calculator_switch">
+                        <input type="radio" name="metric_optimize" value="0" id="metric_optimize_init" checked>
+                        <label for="metric_optimize_init">Initial</label>
+                        <input type="radio" name="metric_optimize" value="1" id="metric_optimize_life">
+                        <label for="metric_optimize_life">Lifetime</label>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="metric_calculator_results">
+        <div class="metric_calculator_name_section">New COS Targets for Variable Cost Channels</div>
+        <div class="metric_calculator_row metric_calculator_row_f">Target Marginal COS: <span id="metric_marginal" class="gc_results">0 Days</span></div>
+        <div class="metric_calculator_row">Target Paid COS: <span id="metric_paid" class="gc_results">0 Days</span></div>
+    </div>
+</div>
+
+<!-- Style Section -->
+<style>
+    /* General styles */
+    #metric_calculator *,
+    #metric_calculator ::after,
+    #metric_calculator ::before {
+        box-sizing: border-box;
+    }
+
+    #metric_calculator {
+        position: relative;
+        max-width: 720px;
+        width: 100%;
+        margin: 20px auto;
+        background: #0c1a5b;
+        padding: 35px 27px 20px;
+    }
+
+    #metric_calculator .metric_calculator_switch input {
+        position: absolute !important;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;
+        width: 1px;
+        border: 0;
+        overflow: hidden;
+    }
+
+    /* Styling other elements */
+    .metric_calculator_titel {
+        font-size: 38px;
+        text-transform: capitalize;
+        font-weight: 700;
+        text-align: center;
+        padding-bottom: 18px;
+        color: #fff;
+    }
+
+    .metric_calculator_divider {
+        background: rgba(245, 245, 245, .11);
+        height: 2px;
+        width: 75%;
+        margin: 0 auto 10px;
+    }
+
+    /* Input styles */
+    #metric_calculator input[type=text] {
+        width: 100%;
+        max-width: 200px;
+        border: 0;
+        box-shadow: inset 1px 1px 5px #060606;
+        background: #0c1a5b;
+        padding: 5px 15px;
+        color: #fff;
+    }
+</style>
+
+<!-- JavaScript Section -->
+<script>
+    function calculateGrowth() {
+        var e = {
+            order: parseFloat(jQuery("#metric_order").autoNumeric("get")),
+            revenue: parseFloat(jQuery("#metric_revenue").autoNumeric("get")),
+            goods: parseFloat(jQuery("#metric_goods").autoNumeric("get")) / 100,
+            ship: parseFloat(jQuery("#metric_ship").autoNumeric("get")) / 100,
+            fee: parseFloat(jQuery("#metric_fee").autoNumeric("get")) / 100,
+            expens: parseFloat(jQuery("#metric_expens").autoNumeric("get")) / 100,
+            optimize: parseFloat(jQuery('input[name="metric_optimize"]:checked').val())
+        };
+
+        var r = e.goods + e.ship + e.fee + e.expens;
+        e.marginal = (1 == e.optimize) ? (e.revenue / e.order * (1 - r)) : (1 - r);
+        e.paid = e.marginal / 2;
+
+        document.getElementById("metric_marginal").innerHTML = (100 * e.marginal).toFixed(1) + " <span>%</span>";
+        document.getElementById("metric_paid").innerHTML = (100 * e.paid).toFixed(1) + " <span>%</span>";
+    }
+
+    jQuery(function() {
+        jQuery(".metric_us").autoNumeric("init", {
+            currencySymbol: "$",
+            digitGroupSeparator: ",",
+            decimalCharacter: ".",
+            decimalPlacesOverride: 0
+        });
+
+        jQuery(".metric_percent").autoNumeric("init", {
+            currencySymbol: "%",
+            digitGroupSeparator: ",",
+            decimalCharacter: ".",
+            decimalPlacesOverride: 1,
+            currencySymbolPlacement: "s"
+        });
+
+        jQuery("#metric_calculator input").change(calculateGrowth);
+        calculateGrowth();
+    });
+</script>
