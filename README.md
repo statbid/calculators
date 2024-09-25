@@ -4,6 +4,10 @@ This repository contains four calculators designed to help businesses and market
 
 These calculators are made available under the Apache License, and we encourage contributions to improve their functionality and accuracy.
 
+## About StatBid
+
+Since, 2015 StatBid has focused on helping merchants grow their profit through search. We are passionate about building community and fostering peer learning, believing that cooperation and shared growth benefit everyone. By sharing these calculators publicly, we hope to contribute to the collective knowledge of the industry, reduce wasted ad spend, and improve productivity.
+
 ## Available Calculators
 
 ### 1. [**COS Calculator**](https://github.com/statbid/calculators/blob/main/cos-calculator.html)
