@@ -6,7 +6,7 @@ These calculators are made available under the Apache License, and we encourage 
 
 ## Available Calculators
 
-### 1. **COS Calculator**
+### 1. [**COS Calculator**](https://github.com/statbid/calculators/blob/main/cos-calculator.html)
    - **Purpose**: Helps calculate the Cost of Sale (COS) by considering various business metrics such as average order value, lifetime revenue, cost of goods sold, shipping costs, and other transaction-related expenses.
    - **Ideal for**: Businesses wanting to understand the efficiency of their ad spend and optimize for profitability.
 
