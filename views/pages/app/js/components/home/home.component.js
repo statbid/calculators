@@ -8,6 +8,8 @@ const style = ``
 
 const eventHandlers = {}
 
-const homeComponent = new Component(template, style, eventHandlers)
+const homeComponent = new Component({ template, style, eventHandlers })
+
+
 
 export default homeComponent

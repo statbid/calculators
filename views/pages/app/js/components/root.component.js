@@ -3,10 +3,12 @@
 import { Component } from 'lib/component.class.js'
 import homeComponent from './home/home.component.js'
 
+console.log(homeComponent)
+
 const template = `
   <div>
     <div id="root-component">
-      //${homeComponent.template}
+      ${homeComponent.template}
     </div>
   </div>`
 
