@@ -9,12 +9,10 @@ body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
   font-size: 18px;
   color: rgba(0, 0, 0, 0.9);
-  background-color: #fff;
+  background-color: #0d1117;
 }
 
 #root {
-  position: relative;
-  margin: auto;
   min-height: 100vh;
 }
 
