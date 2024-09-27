@@ -9,12 +9,11 @@ const template = `
   </div>`
 
 const style = `
-  #main-panel-component {    
-    border: 1px solid #3d4147;
-    border-radius: 5px;        
-    padding: 10px;
-    margin-top: 1rem;
-    flex:80%;    
+  #main-panel-component {
+    border-radius: 1%;
+    border: 1px solid #1d2127;    
+    flex:70%;
+    padding:2% 5%;    
   }
 `
 

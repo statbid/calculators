@@ -18,7 +18,7 @@ let linksTable = `<table id="links-table">`
 linksTable += links.map((link) => {
   const { id, text } = link
   const row = `<tr>
-  <td id="${id}">${text}</td>
+  <td class="hover-bg-color" id="${id}">${text}</td>
   </tr>`
   return row
 }).join("\n") + `</table>`
@@ -32,26 +32,30 @@ const style = `
   #side-nav-panel-component {    
     color: #a5a0b4;
     flex:10%;  
-    height: 100vh;    
-    margin-top: 1rem;
-    margin-right: 1rem;
-    padding: 10px 5px;      
+    height: 100%;
+    margin: 0 1rem 0 0;
+    padding: 10px;    
   }
-  
+
   #links-table td {
     padding: 3% 10%;
     text-wrap: wrap;
     font-size: 0.9rem;
     border-radius: 5px;
-    /*border: 1px solid #3d4147;*/
+    
   }
 
   .current-link {  
     background-color: rgba(0,180,250, 0.2);
     color: #f3f3f7;
   }
+
   .non-current-link{
     color: #a5a0b4;
+  }
+  
+  .hover-bg-color:hover {
+  background-color: rgba(0,180,250, 0.2);
   }
 `
 
@@ -75,6 +79,7 @@ const eventHandlers = {
 
         const mainPanel = document.getElementById('main-panel-component')
         mainPanel.innerHTML = homeComponent.template
+
       } catch (e) {
         throw new Error(e)
       }
@@ -91,6 +96,7 @@ const eventHandlers = {
 
         const mainPanel = document.getElementById('main-panel-component')
         mainPanel.innerHTML = cosCalculatorComponent.template
+
       } catch (e) {
         throw new Error(e)
       }

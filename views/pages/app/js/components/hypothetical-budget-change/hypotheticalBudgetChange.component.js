@@ -4,9 +4,9 @@ import { Component } from 'lib/component.class.js'
 
 const template = `
 <div class="hypothetical_cos_calculator">
-    <div class="hypothetical_cos_calculator_titel">Hypothetical Budget Change</div>
-    <div class="hypothetical_cos_calculator_divider"></div>
-    
+    <div class="form-title">
+        <h1>Hypothetical Budget Change</h1>
+    </div>
     <div class="hypothetical_cos_calculator_inputs">
         <div class="hypothetical_cos_calculator_input_section">
             <div class="hypothetical_cos_calculator_row hypothetical_cos_calculator_row_f">
@@ -70,71 +70,7 @@ const template = `
 
 `
 
-const style = `
-    .hypothetical_cos_calculator *,
-    .hypothetical_cos_calculator ::after,
-    .hypothetical_cos_calculator ::before {
-        box-sizing: border-box;
-    }
-
-    .hypothetical_cos_calculator {
-        position: relative;
-        max-width: 720px;
-        width: 100%;
-        margin: 20px auto;
-        background: #0c1a5b;
-        padding: 35px 27px 20px;
-        box-shadow: 1px 1px 5px rgba(0, 0, 0, .2);
-    }
-
-    .hypothetical_cos_calculator_titel {
-        font-size: 38px;
-        text-transform: capitalize;
-        font-weight: 700;
-        text-align: center;
-        padding-bottom: 18px;
-        color: #fff;
-    }
-
-    .hypothetical_cos_calculator_divider {
-        background: rgba(245, 245, 245, .11);
-        height: 2px;
-        width: 75%;
-        margin: 0 auto 10px;
-    }
-
-    .hypothetical_cos_calculator_input_section {
-        float: left;
-        width: calc(50% - 5px);
-        margin-right: 10px;
-        padding-top: 15px;
-    }
-
-    .hypothetical_cos_calculator_row {
-        margin-bottom: 10px;
-        box-shadow: 1px 1px 5px #060606;
-        padding: 20px 0;
-        background: #f5f5f5;
-    }
-
-    .hypothetical_cos_calculator input[type=text] {
-        width: 100%;
-        max-width: 200px;
-        border: 0;
-        box-shadow: inset 1px 1px 5px #060606;
-        background: #0c1a5b;
-        padding: 5px 15px;
-        color: #fff;
-    }
-
-    .hypothetical_cos_calculator_cell {
-        float: left;
-        width: 50%;
-    }
-
-    .hypothetical_cos_calculator_results {
-        margin-top: 20px;
-    }`
+const style = ``
 
 const eventHandlers = {}
 

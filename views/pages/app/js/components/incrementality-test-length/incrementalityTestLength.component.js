@@ -3,9 +3,9 @@
 import { Component } from 'lib/Component.class.js'
 
 const template = `<div id="bl_calculator">
-    <div class="bl_calculator_titel">Incrementality Test Budget & Length Calculator</div>
-    <div class="bl_calculator_divider"></div>
-    
+    <div class="form-title">
+        <h1>Incrementality Test Budget & Length Calculator</h1>
+    </div>    
     <div class="bl_calculator_inputs">
         <div class="bl_calculator_input_section">
             <div class="bl_calculator_name_section">Sitewide Metrics</div>

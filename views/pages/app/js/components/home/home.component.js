@@ -45,12 +45,17 @@ const template = `
 
 const style = `
   .calculator {
-    padding: 1rem;    
+    /*padding: 1rem;*/
     margin: 1rem;
     color: #a5a0b4;    
     font-size: 0.95rem;    
     flex:1;
   }
+
+  .calculator-description-container:hover{
+    height:100%;
+  }
+
   .calculator-subtitle {    
     color: #d0e0f0;
     font-size: 1rem;
@@ -80,6 +85,7 @@ const style = `
     text-align:center;
     padding:3%;
     border-top: 0px;
+    height:60%;
   }
 `
 
