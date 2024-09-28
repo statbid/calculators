@@ -25,10 +25,19 @@ linksTable += links.map((link) => {
 
 const template = `
   <div id="side-nav-panel-component">
+    <p id="org-name">StatBid</p>
     ${linksTable}  
   </div>`
 
 const style = `
+  #org-name {
+    color: #20a2e7;
+    font-size: 18px;
+    border-left: 5px solid #20a2e7;
+    border-radius: 5px;
+    padding: 2% 3%;
+  }
+
   #side-nav-panel-component {    
     color: #a5a0b4;
     flex:10%;  
@@ -48,6 +57,7 @@ const style = `
   .current-link {  
     background-color: rgba(0,180,250, 0.2);
     color: #f3f3f7;
+    border: 1px solid rgba(0,180,250, 0.9);
   }
 
   .non-current-link{

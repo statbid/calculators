@@ -1,76 +1,171 @@
 'use strict'
 
 import { Component } from 'lib/component.class.js'
+//import jQuery from 'jquery'
+//import { autoNumeric } from 'autoNumeric'
 
 const template = `
 <div id="cos-calc-component">
-    
-        <div class="form-title">
-            <h1>COS Calculator</h1>
-        </div>
-        <p>Business Metrics</p>
-        <div class="form-input">
-            <label>Average Order Value</label><br>
-            <input type="text" value="" placeholder="200" required>            
-        </div>
-        <div class="form-input">
-            <label>Average Lifetime Revenue</label><br>
-            <input type="text" value="" placeholder="250" required>
-        </div>
-        <div class="form-input">
-            <label>Average Cost of Goods Sold</label><br>
-            <input type="text" value="" placeholder="250" required>
-        </div>
-        <div class="form-input">
-            <label>Average Shipping Costs</label><br>
-            <input type="text" value="" placeholder="250" required>
-        </div>
-        <div class="form-input">
-            <label>Average Lifetime Revenue</label><br>
-            <input type="text" value="" placeholder="250" required>
-        </div>
-        <div class="form-input">
-            <label>Average CC / Processing Fees</label><br>
-            <input type="text" value="" placeholder="250" required>
-        </div>
-        <div class="form-input">
-            <label>Other Per-Transaction Expenses</label><br>
-            <input type="text" value="" placeholder="" required>
-        </div>        
-        <p>Optimization Options</p>
-        <input type="radio" name="metric_optimize" value="0" id="metric_optimize_init" checked>
-        <label for="metric_optimize_init">Initial</label>
-        <input type="radio" name="metric_optimize" value="1" id="metric_optimize_life">
-        <label for="metric_optimize_life">Lifetime</label>
+    <div class="form-title">
+        <p>COS Calculator</p>
     </div>
-    <h2>Results</h2>
-    <div class="metric_calculator_results">
-        <div class="metric_calculator_name_section">New COS Targets for Variable Cost Channels</div>
-        <div class="metric_calculator_row metric_calculator_row_f">Target Marginal COS: <span id="metric_marginal" class="gc_results">0 Days</span></div>
-        <div class="metric_calculator_row">Target Paid COS: <span id="metric_paid" class="gc_results">0 Days</span></div>
-    </div>
-
+    <div class="flex-container calc-main">        
+        <div class="form-body flex-column">
+            <p class="sub-section-head bottom-border-thick">Business Metrics</p>
+            <div class="form-input" >
+                <label for="metric_order" class="label">Average Order Value</label>
+                <input type="text" id="metric_order" class="metric_us" value="200">
+            </div>
+            <div class="form-input">
+                <label>Average Lifetime Revenue</label>
+                <input type="text" id="metric_revenue" class="metric_us" value="250">
+            </div>
+            <div class="form-input">
+                <label>Average Cost of Goods Sold</label>
+                <input type="text" id="metric_goods" class="metric_percent" value="50">
+            </div>
+            <div class="form-input">
+                <label>Average Shipping Costs</label>
+                <input type="text" id="metric_ship" class="metric_percent" value="12">
+            </div>
+            <div class="form-input">
+                <label>Average CC / Processing Fees</label>
+                <input type="text" id="metric_fee" class="metric_percent" value="2.9">
+            </div>
+            <div class="form-input">
+                <label>Other Per-Transaction Expenses</label>
+                <input type="text" id="metric_expens" class="metric_percent" value="0">
+            </div>
+            <div class="form-input">
+                <label>Optimization Options</label>
+                <input type="radio" name="metric_optimize" value="0" id="metric_optimize_init" checked>
+                <label for="metric_optimize_init">Initial</label>
+                <input type="radio" name="metric_optimize" value="1" id="metric_optimize_life">
+                <label for="metric_optimize_life">Lifetime</label>
+            </div>
+        </div>
+        <div class="calculator_results">
+            <p class="sub-section-head bottom-border-thick">New COS Targets for Variable Cost Channels</p>
+            <div class="flex-container">
+                <div>
+                    <p class="grid-cell"><span id="metric_marginal" class="big-font">0 Days</span><br><br><span class="sub-title">Target Marginal COS</span></p>
+                </div>
+                <div>
+                    <p class="grid-cell"><span id="metric_paid" class="big-font">0 Days</span><br><br><span class="sub-title">Target Paid COS</span></p>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
 `
 
-const style = ` 
+const style = `
+.label {
+    padding: 0px 0px 10px 0px;
+}
+.bold-white {
+    color:white;
+    font-weight:600;
+}
+.bold-light-white {
+    color: rgba(240, 250, 250, 0.8)
+}
+.sub-title {
+    color: #0081a7;
+    font-weight:600;
+}
+.sub-section-head {
+    /*color: #0081a7;*/
+    color: rgba(20, 240, 250, 0.8);
+    padding: 3%;
+    font-size:1.2rem;
+    font-weight:600;
+    border: 1px solid #004157;
+    background-color: rgba(220, 220, 255, 0.1);
+    border-radius: 5px;    
+}
+
+.big-font {    
+    font-weight:600;
+    font-size:3rem;
+}
+.calc-main{
+    margin-bottom:2%;
+}
+.flex-column {
+    flex:1;
+    padding:20%;    
+}
+.head-card {
+    
+}
 .form-title {
     color: #f0f0f0;
     background-color: #004157;
-    padding:10px;
-    width:50%;
-    text-align:center;
+    padding:0.5% 3%;
+    font-size:1.5rem;
+    font-weight:600;
+    border-radius: 5px 5px 0px 0px;        
 }
-label{
-    color:#939595;
-    margin-bottom:20px;
+
+.flex-container {
+    display:flex;
+    flex-direction:row;    
+}
+.grid-cell {
+    padding: 1rem;
+    text-align:center;
+    border: 2px solid #004157;
+    margin: 1rem;
+    border-radius:5px;    
+}
+.grid-container {
+    display:grid;    
+    grid-template-columns: 50% 50%;
+}
+.metrics-calculator {    
+    /*
+    border-radius: 5px;
+    border: 1px solid #004157;*/    
+}
+
+.calculator_results, .form-body {    
+    padding:1% 3% 5% 3%;
+    background-color: #10151f;    
+}
+.calculator_results {    
+    /*background-color: #0f151f;*/
+    border-radius: 0px 0px 5px 0px;
+}
+
+.form-body {
+    /*background-color: #0f101f;*/
+    border-radius: 0px 5px 0px 0px;    
+}
+
+label {
+    margin-bottom:20px;    
+    width:5%;
+}
+
+input[type="radio"] {    
+    border: 1px solid white;
 }
 input[type="text"]{
-    color: white;
+    color: #0091cf;
+    font-weight: 600;
     font-size:16px;
+    padding: 10px 8px;
+    width: 30%;
     border: 1px solid #004157;
+    background-color: #0f101f;               
 }
 .form-input{
-    padding:5px;
+    padding: 3% 3% 6% 3%;
+    border: 1px solid #004157;
+    border-radius: 5px;
+    margin-bottom:0.5rem;
+    background-color: rgba(50,150, 190, 0.1);
 }
 /* General styles */
     #metric_calculator *,
@@ -104,7 +199,7 @@ input[type="text"]{
         font-weight: 700;
         text-align: center;
         padding-bottom: 18px;
-        color: #fff;
+        color: #0081a7;
     }
 
     .metric_calculator_divider {
@@ -122,10 +217,52 @@ input[type="text"]{
         box-shadow: inset 1px 1px 5px #060606;
         background: #0c1a5b;
         padding: 5px 15px;
-        color: #fff;
+        color: #0081a7;
     }`
 
-const eventHandlers = {}
+const eventHandlers = {
+    cosCalculatorComponentHandler: () => {
+        function calculateGrowth() {
+            var e = {
+                order: parseFloat(jQuery("#metric-order").autoNumeric("get")),
+                revenue: parseFloat(jQuery("#metric_revenue").autoNumeric("get")),
+                goods: parseFloat(jQuery("#metric_goods").autoNumeric("get")) / 100,
+                ship: parseFloat(jQuery("#metric_ship").autoNumeric("get")) / 100,
+                fee: parseFloat(jQuery("#metric_fee").autoNumeric("get")) / 100,
+                expens: parseFloat(jQuery("#metric_expens").autoNumeric("get")) / 100,
+                optimize: parseFloat(jQuery('input[name="metric_optimize"]:checked').val())
+            };
+
+            var r = e.goods + e.ship + e.fee + e.expens;
+            e.marginal = (1 == e.optimize) ? (e.revenue / e.order * (1 - r)) : (1 - r);
+            e.paid = e.marginal / 2;
+
+            document.getElementById("metric_marginal").innerHTML = (100 * e.marginal).toFixed(1) + " <span>%</span>";
+            document.getElementById("metric_paid").innerHTML = (100 * e.paid).toFixed(1) + " <span>%</span>";
+        }
+
+        jQuery(function () {
+            jQuery(".metric_us").autoNumeric("init", {
+                currencySymbol: "$",
+                digitGroupSeparator: ",",
+                decimalCharacter: ".",
+                decimalPlacesOverride: 0
+            });
+
+            jQuery(".metric_percent").autoNumeric("init", {
+                currencySymbol: "%",
+                digitGroupSeparator: ",",
+                decimalCharacter: ".",
+                decimalPlacesOverride: 1,
+                currencySymbolPlacement: "s"
+            });
+
+            jQuery("#metric_calculator input").change(calculateGrowth);
+            calculateGrowth();
+        });
+
+    }
+}
 
 const cosCalculatorComponent = new Component({ template, style, eventHandlers })
 

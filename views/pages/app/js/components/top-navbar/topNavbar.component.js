@@ -13,8 +13,8 @@ const template = `
 const style = `
   #top-navbar-component {    
     display: flex;    
-    /*background-color: #25292e;
-    border-bottom: 1px solid #3d4147;*/
+    background-color: #25292e;
+    border-bottom: 1px solid #3d4147;
   }
     
   #app-title {
