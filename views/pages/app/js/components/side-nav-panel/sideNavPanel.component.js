@@ -105,8 +105,7 @@ const eventHandlers = {
         incTestBudgetLengthLink.classList.remove('current-link')
 
         const mainPanel = document.getElementById('main-panel-component')
-        mainPanel.innerHTML = cosCalculatorComponent.template
-
+        cosCalculatorComponent.load(mainPanel)
       } catch (e) {
         throw new Error(e)
       }
@@ -122,7 +121,7 @@ const eventHandlers = {
         incTestBudgetLengthLink.classList.remove('current-link')
 
         const mainPanel = document.getElementById('main-panel-component')
-        mainPanel.innerHTML = hypBudgetChangeComponent.template
+        hypBudgetChangeComponent.load(mainPanel)
       } catch (e) {
         throw new Error(e)
       }
@@ -138,7 +137,7 @@ const eventHandlers = {
         incTestBudgetLengthLink.classList.remove('current-link')
 
         const mainPanel = document.getElementById('main-panel-component')
-        mainPanel.innerHTML = hypCosChangeComponent.template
+        hypCosChangeComponent.load(mainPanel)
       } catch (e) {
         throw new Error(e)
       }
@@ -154,14 +153,11 @@ const eventHandlers = {
         incTestBudgetLengthLink.classList.add('current-link')
 
         const mainPanel = document.getElementById('main-panel-component')
-        mainPanel.innerHTML = incTestBudgetLengthComponent.template
+        incTestBudgetLengthComponent.load(mainPanel)
       } catch (e) {
         throw new Error(e)
       }
     }
-
-
-
   }
 }
 

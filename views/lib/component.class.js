@@ -19,7 +19,7 @@ export class Component {
   }
 
   // initializes the eventHandlers of each components
-  static initEventHandlers() {
+  static initAllEventHandlers() {
     let components = Component.components
     for (let i in components) {
       let eventHandlers = components[i]["eventHandlers"]
@@ -37,5 +37,18 @@ export class Component {
     const styles = components.map(component => component.style).join('\n').replaceAll(/\n+|\t+/g, '')
     const style = document.getElementsByTagName('style')[0]
     style.innerHTML = styles
+  }
+
+  setEventHandlers() {
+    let eventHandlers = this.eventHandlers
+    for (let eventHandler in eventHandlers) {
+      if (eventHandler) {
+        eventHandlers[eventHandler]()
+      }
+    }
+  }
+  load(parentElement) {
+    parentElement.innerHTML = this.template
+    this.setEventHandlers()
   }
 }

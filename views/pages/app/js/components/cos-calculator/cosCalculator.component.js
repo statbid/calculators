@@ -1,6 +1,7 @@
 'use strict'
 
 import { Component } from 'lib/component.class.js'
+import { CosCalculator } from '../../services/cosCalculator.class.js'
 //import jQuery from 'jquery'
 //import { autoNumeric } from 'autoNumeric'
 
@@ -9,38 +10,38 @@ const template = `
     <div class="form-title">
         <p>COS Calculator</p>
     </div>
-    <div class="flex-container calc-main">        
-        <div class="form-body flex-column">
+    <div class="grid-container calc-main">        
+        <div class="form-body flex-column" id="metric-calculator">
             <p class="sub-section-head bottom-border-thick">Business Metrics</p>
             <div class="form-input" >
                 <label for="metric_order" class="label">Average Order Value</label>
-                <input type="text" id="metric_order" class="metric_us" value="200">
+                <input type="text" id="metric-order" class="metric_us" value="200">
             </div>
             <div class="form-input">
                 <label>Average Lifetime Revenue</label>
-                <input type="text" id="metric_revenue" class="metric_us" value="250">
+                <input type="text" id="metric-revenue" class="metric_us" value="250">
             </div>
             <div class="form-input">
                 <label>Average Cost of Goods Sold</label>
-                <input type="text" id="metric_goods" class="metric_percent" value="50">
+                <input type="text" id="metric-goods" class="metric_percent" value="50">
             </div>
             <div class="form-input">
                 <label>Average Shipping Costs</label>
-                <input type="text" id="metric_ship" class="metric_percent" value="12">
+                <input type="text" id="metric-ship" class="metric_percent" value="12">
             </div>
             <div class="form-input">
                 <label>Average CC / Processing Fees</label>
-                <input type="text" id="metric_fee" class="metric_percent" value="2.9">
+                <input type="text" id="metric-fee" class="metric_percent" value="2.9">
             </div>
             <div class="form-input">
                 <label>Other Per-Transaction Expenses</label>
-                <input type="text" id="metric_expens" class="metric_percent" value="0">
+                <input type="text" id="metric-expense" class="metric_percent" value="5.0">
             </div>
             <div class="form-input">
                 <label>Optimization Options</label>
-                <input type="radio" name="metric_optimize" value="0" id="metric_optimize_init" checked>
+                <input type="radio" name="metric-optimize" value="0" id="metric_optimize_init" checked>
                 <label for="metric_optimize_init">Initial</label>
-                <input type="radio" name="metric_optimize" value="1" id="metric_optimize_life">
+                <input type="radio" name="metric-optimize" value="1" id="metric_optimize_life">
                 <label for="metric_optimize_life">Lifetime</label>
             </div>
         </div>
@@ -167,6 +168,7 @@ input[type="text"]{
     margin-bottom:0.5rem;
     background-color: rgba(50,150, 190, 0.1);
 }
+
 /* General styles */
     #metric_calculator *,
     #metric_calculator ::after,
@@ -222,45 +224,19 @@ input[type="text"]{
 
 const eventHandlers = {
     cosCalculatorComponentHandler: () => {
-        function calculateGrowth() {
-            var e = {
-                order: parseFloat(jQuery("#metric-order").autoNumeric("get")),
-                revenue: parseFloat(jQuery("#metric_revenue").autoNumeric("get")),
-                goods: parseFloat(jQuery("#metric_goods").autoNumeric("get")) / 100,
-                ship: parseFloat(jQuery("#metric_ship").autoNumeric("get")) / 100,
-                fee: parseFloat(jQuery("#metric_fee").autoNumeric("get")) / 100,
-                expens: parseFloat(jQuery("#metric_expens").autoNumeric("get")) / 100,
-                optimize: parseFloat(jQuery('input[name="metric_optimize"]:checked').val())
-            };
-
-            var r = e.goods + e.ship + e.fee + e.expens;
-            e.marginal = (1 == e.optimize) ? (e.revenue / e.order * (1 - r)) : (1 - r);
-            e.paid = e.marginal / 2;
-
-            document.getElementById("metric_marginal").innerHTML = (100 * e.marginal).toFixed(1) + " <span>%</span>";
-            document.getElementById("metric_paid").innerHTML = (100 * e.paid).toFixed(1) + " <span>%</span>";
+        const orderEl = document.getElementById("metric-order")
+        const revenueEl = document.getElementById("metric-revenue")
+        const goodsEl = document.getElementById("metric-goods")
+        const shipEl = document.getElementById("metric-ship")
+        const feeEl = document.getElementById("metric-fee")
+        const expenseEl = document.getElementById("metric-expense")
+        const optmizeEls = document.getElementsByName("metric-optimize")
+        if (orderEl && revenueEl && goodsEl && shipEl && feeEl && expenseEl && optmizeEls) {
+            CosCalculator.setResult()
+            document.querySelectorAll("#metric-calculator input").forEach(el => {
+                el.onchange = async (e) => CosCalculator.setResult()
+            })
         }
-
-        jQuery(function () {
-            jQuery(".metric_us").autoNumeric("init", {
-                currencySymbol: "$",
-                digitGroupSeparator: ",",
-                decimalCharacter: ".",
-                decimalPlacesOverride: 0
-            });
-
-            jQuery(".metric_percent").autoNumeric("init", {
-                currencySymbol: "%",
-                digitGroupSeparator: ",",
-                decimalCharacter: ".",
-                decimalPlacesOverride: 1,
-                currencySymbolPlacement: "s"
-            });
-
-            jQuery("#metric_calculator input").change(calculateGrowth);
-            calculateGrowth();
-        });
-
     }
 }
 

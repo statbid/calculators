@@ -44,8 +44,7 @@ const template = `
   </div>`
 
 const style = `
-  .calculator {
-    /*padding: 1rem;*/
+  .calculator {    
     margin: 1rem;
     color: #a5a0b4;    
     font-size: 0.95rem;    

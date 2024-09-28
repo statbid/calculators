@@ -7,8 +7,7 @@ import mainPanelComponent from './main-panel/mainPanel.component.js'
 //${topNavbarComponent.template}
 const template = `
   <div>
-    <div id="root-component">
-      
+    <div id="root-component">      
       <div id="main-container">
         ${sideNavPanelComponent.template}
         ${mainPanelComponent.template}
@@ -20,7 +19,8 @@ const style = `
   #main-container {
     margin:auto;
     max-width:1300px;    
-    display: flex;    
+    display: grid;
+    grid-template-columns: 20% 80%;
     min-height:100vh;    
   }`
 
