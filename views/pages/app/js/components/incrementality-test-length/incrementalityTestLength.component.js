@@ -1,6 +1,6 @@
 'use strict'
 
-import { Component } from 'lib/Component.class.js'
+import { Component } from 'lib/component.class.js'
 
 const template = `<div id="bl_calculator">
     <div class="form-title">
