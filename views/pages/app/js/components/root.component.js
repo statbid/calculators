@@ -16,13 +16,29 @@ const template = `
   </div>`
 
 const style = `
+/* for mobile phones*/
+
   #main-container {
     margin:auto;
-    max-width:1300px;    
-    display: grid;
-    grid-template-columns: 20% 80%;
-    min-height:100vh;    
-  }`
+    width:100%;
+    height:100%;
+  }
+
+  @media only screen and (min-width: 600px){
+  /* For Tablets */
+    margin:auto;
+    width:100%;
+  }
+
+  @media only screen and (min-width: 768px){
+    /* For desktop: */
+    #main-container {
+      margin:auto;
+      max-width:1300px;    
+      min-height:100vh;    
+    }    
+  } 
+  `
 
 const rootComponent = new Component({ template, style })
 

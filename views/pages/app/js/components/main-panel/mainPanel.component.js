@@ -11,8 +11,7 @@ const template = `
 const style = `
   #main-panel-component {
     /*border-radius: 1%;
-    border: 1px solid #1d2127;*/
-    flex:70%;
+    border: 1px solid #1d2127;*/    
     margin-top:1rem;
     /*padding:2% 2%;   */
   }

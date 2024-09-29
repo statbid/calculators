@@ -25,33 +25,54 @@ linksTable += links.map((link) => {
 
 const template = `
   <div id="side-nav-panel-component">
-    <p id="org-name">StatBid</p>
-    ${linksTable}  
+    <div id="title-menu">      
+      <p id="org-name">StatBid</p>
+    </div>
+    <div id="menu-list">
+      ${linksTable}
+    </div>
   </div>`
 
 const style = `
   #org-name {
-    color: #20a2e7;
+    color: #90e2f7;
     font-size: 18px;
-    border-left: 5px solid #20a2e7;
-    border-radius: 5px;
+    border-left: 0.3rem solid #20a2e7;
+    border-radius: 0.5rem;
     padding: 2% 3%;
   }
 
+  #title-menu {
+    position:top;
+    /*background-color: #006177;*/    
+    width: 100vw;    
+    padding:0.5% 3%;
+  } 
+
   #side-nav-panel-component {    
-    color: #a5a0b4;
-    flex:10%;  
-    height: 100%;
-    margin: 0 1rem 0 0;
-    padding: 10px;    
+    color: #a5a0b4;     
+    height: 100%;   
+    padding: 0% 10% 5% 0%;      
   }
 
   #links-table td {
     padding: 3% 10%;
     text-wrap: wrap;
     font-size: 0.9rem;
+    border-radius: 5px;      
+  }
+  
+  #menu-list {
+    background-color: rgba(30,50,70, 1);
     border-radius: 5px;
-    
+    width:50vw;
+    padding: 5%;
+    position: absolute;
+    left: 0px;
+    top: 7rem;
+    z-index:1;    
+    margin: -10% 0%;
+    display: none;
   }
 
   .current-link {  
@@ -65,8 +86,32 @@ const style = `
   }
   
   .hover-bg-color:hover {
-  background-color: rgba(0,180,250, 0.2);
+    background-color: rgba(0,180,250, 0.2);
   }
+
+  @media only screen and (min-width: 768px){
+    #menu-list {
+      position:absolute;
+      width: 10vW;            
+      padding:5%;
+      top:10%;
+      margin:0;
+      z-index:1;
+    }    
+    #title-menu {
+      position:absolute;
+      left:0px;
+      /*background-color: #006177;*/
+      width: 100vw;    
+      padding:0% 2%;
+      margin:0;
+    }
+
+    #org-name{
+      padding: 0.1% 0.5%; 
+    }
+  }
+
 `
 
 const eventHandlers = {
@@ -77,6 +122,19 @@ const eventHandlers = {
     const hypCosChangeLink = document.getElementById('hyp-cos-change-link')
     const incTestBudgetLengthLink = document.getElementById('inc-test-budget-length-link')
     homeLink.classList.add('current-link')
+
+    const orgName = document.getElementById('org-name')
+    const menuList = document.getElementById('menu-list')
+    menuList.style.display = "none"
+    let isMenuClicked = false
+    orgName.onclick = async (e) => {
+      isMenuClicked = !isMenuClicked
+      if (isMenuClicked) {
+        menuList.style.display = "block"
+      } else {
+        menuList.style.display = "none"
+      }
+    }
 
     homeLink.onclick = async (e) => {
       e.preventDefault()

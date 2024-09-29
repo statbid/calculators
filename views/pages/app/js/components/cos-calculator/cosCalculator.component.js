@@ -7,47 +7,87 @@ import { CosCalculator } from '../../services/cosCalculator.class.js'
 
 const template = `
 <div id="cos-calc-component">
+
     <div class="form-title">
         <p>COS Calculator</p>
     </div>
-    <div class="grid-container calc-main">        
-        <div class="form-body flex-column" id="metric-calculator">
+
+    <div class="calc-main">
+
+        <div class="form-body" id="metric-calculator">
             <p class="sub-section-head bottom-border-thick">Business Metrics</p>
+
             <div class="form-input" >
-                <label for="metric_order" class="label">Average Order Value</label>
-                <input type="text" id="metric-order" class="metric_us" value="200">
+                <div class="label">
+                    <label for="metric_order" class="label">Average Order Value</label>
+                </div>
+                <div class="input">
+                    <input type="text" id="metric-order" class="metric_us" value="200">
+                </div>
             </div>
+
             <div class="form-input">
-                <label>Average Lifetime Revenue</label>
-                <input type="text" id="metric-revenue" class="metric_us" value="250">
+                <div class="label">
+                    <label>Average Lifetime Revenue</label>
+                </div>
+                <div class="input">
+                    <input type="text" id="metric-revenue" class="metric_us" value="250">
+                </div>
             </div>
+
             <div class="form-input">
-                <label>Average Cost of Goods Sold</label>
-                <input type="text" id="metric-goods" class="metric_percent" value="50">
+                <div class="label">
+                    <label>Average Cost of Goods Sold</label>
+                </div>
+                <div class="input">
+                    <input type="text" id="metric-goods" class="metric_percent" value="50">
+                </div>
             </div>
+
             <div class="form-input">
-                <label>Average Shipping Costs</label>
-                <input type="text" id="metric-ship" class="metric_percent" value="12">
+                <div class="label">
+                    <label>Average Shipping Costs</label>
+                </div>
+                <div class="input">
+                    <input type="text" id="metric-ship" class="metric_percent" value="12">
+                </div>
             </div>
+
             <div class="form-input">
-                <label>Average CC / Processing Fees</label>
-                <input type="text" id="metric-fee" class="metric_percent" value="2.9">
+                <div class="label">
+                    <label>Average CC / Processing Fees</label>
+                </div>
+                <div class="input">
+                    <input type="text" id="metric-fee" class="metric_percent" value="2.9">
+                </div>
             </div>
+
             <div class="form-input">
-                <label>Other Per-Transaction Expenses</label>
-                <input type="text" id="metric-expense" class="metric_percent" value="5.0">
+                <div class="label">
+                    <label>Other Per-Transaction Expenses</label>
+                </div>
+                <div class="input">
+                    <input type="text" id="metric-expense" class="metric_percent" value="5.0">
+                </div>
             </div>
+
             <div class="form-input">
-                <label>Optimization Options</label>
-                <input type="radio" name="metric-optimize" value="0" id="metric_optimize_init" checked>
-                <label for="metric_optimize_init">Initial</label>
-                <input type="radio" name="metric-optimize" value="1" id="metric_optimize_life">
-                <label for="metric_optimize_life">Lifetime</label>
+                <div class="label">            
+                    <label>Optimization Options</label>
+                </div>
+                <div class="input">
+                    <input type="radio" name="metric-optimize" value="0" id="metric_optimize_init" checked>
+                    <label for="metric_optimize_init">Initial</label>
+                    <input type="radio" name="metric-optimize" value="1" id="metric_optimize_life">
+                    <label for="metric_optimize_life">Lifetime</label>
+                </div>
             </div>
+
         </div>
+
         <div class="calculator_results">
             <p class="sub-section-head bottom-border-thick">New COS Targets for Variable Cost Channels</p>
-            <div class="flex-container">
+            <div id="result-dashboard">
                 <div>
                     <p class="grid-cell"><span id="metric_marginal" class="big-font">0 Days</span><br><br><span class="sub-title">Target Marginal COS</span></p>
                 </div>
@@ -75,35 +115,34 @@ const style = `
     color: #0081a7;
     font-weight:600;
 }
-.sub-section-head {
-    /*color: #0081a7;*/
+.sub-section-head {    
     color: rgba(20, 240, 250, 0.8);
-    padding: 3%;
-    font-size:1.2rem;
+    padding:3%;
+    font-size:1.1rem;
     font-weight:600;
     border: 1px solid #004157;
     background-color: rgba(220, 220, 255, 0.1);
-    border-radius: 5px;    
+    border-radius: 5px;
+    text-align:center;   
 }
 
 .big-font {    
     font-weight:600;
-    font-size:3rem;
+    font-size: 3rem;
 }
-.calc-main{
+
+.calc-main {
     margin-bottom:2%;
+    background-color: #10151f;    
 }
 .flex-column {
     flex:1;
     padding:20%;    
 }
-.head-card {
-    
-}
 .form-title {
     color: #f0f0f0;
     background-color: #004157;
-    padding:0.5% 3%;
+    padding:0.1% 3%;
     font-size:1.5rem;
     font-weight:600;
     border-radius: 5px 5px 0px 0px;        
@@ -124,6 +163,7 @@ const style = `
     display:grid;    
     grid-template-columns: 50% 50%;
 }
+
 .metrics-calculator {    
     /*
     border-radius: 5px;
@@ -132,7 +172,7 @@ const style = `
 
 .calculator_results, .form-body {    
     padding:1% 3% 5% 3%;
-    background-color: #10151f;    
+        
 }
 .calculator_results {    
     /*background-color: #0f151f;*/
@@ -141,86 +181,73 @@ const style = `
 
 .form-body {
     /*background-color: #0f101f;*/
-    border-radius: 0px 5px 0px 0px;    
+    border-radius: 0px 5px 0px 0px;
 }
 
-label {
-    margin-bottom:20px;    
-    width:5%;
-}
 
 input[type="radio"] {    
     border: 1px solid white;
 }
+
 input[type="text"]{
     color: #0091cf;
     font-weight: 600;
     font-size:16px;
-    padding: 10px 8px;
-    width: 30%;
+    padding: 3% 2%;    
     border: 1px solid #004157;
-    background-color: #0f101f;               
+    background-color: #0f101f;
+    width:90%;   
 }
+    
 .form-input{
-    padding: 3% 3% 6% 3%;
+    padding: 1% 1% 5% 1%;
     border: 1px solid #004157;
     border-radius: 5px;
-    margin-bottom:0.5rem;
-    background-color: rgba(50,150, 190, 0.1);
+    margin:0.2rem;
+    background-color: rgba(50,150, 190, 0.1);    
 }
 
-/* General styles */
-    #metric_calculator *,
-    #metric_calculator ::after,
-    #metric_calculator ::before {
-        box-sizing: border-box;
+
+@media only screen and (min-width: 600px){
+
+}
+
+@media only screen and (min-width: 768px){
+    input[type="text"] {        
+        padding: 3% 4%;
+        width:90%;
+    }    
+    .calc-main {
+        display: grid;
+        grid-template-columns: 30% 70%;
     }
 
-    #metric_calculator {
-        position: relative;
-        max-width: 720px;
-        width: 100%;
-        margin: 20px auto;
-        /*background: #0c1a5b;*/
-        padding: 35px 27px 20px;
+    #result-dashboard {
+        display: grid;
+        grid-template-columns: 50% 50%;
+              
+    }
+    .form-input {
+        padding: 3% 5%;
+        margin:0.3rem;
+    }
+    
+    .form-body {
+        margin:1rem;
+        margin-left:0;
+        border: 1px solid #004157;
+        border-radius:5px;
+        padding:8% 10%;        
+    }
+    
+    .calculator_results{
+        margin: 1rem;
+        margin-right:0;
     }
 
-    #metric_calculator .metric_calculator_switch input {
-        position: absolute !important;
-        clip: rect(0, 0, 0, 0);
-        height: 1px;
-        width: 1px;
-        border: 0;
-        overflow: hidden;
-    }
+}
 
-    /* Styling other elements */
-    .metric_calculator_titel {
-        font-size: 38px;
-        text-transform: capitalize;
-        font-weight: 700;
-        text-align: center;
-        padding-bottom: 18px;
-        color: #0081a7;
-    }
-
-    .metric_calculator_divider {
-        background: rgba(245, 245, 245, .11);
-        height: 2px;
-        width: 75%;
-        margin: 0 auto 10px;
-    }
-
-    /* Input styles */
-    #metric_calculator input[type=text] {
-        width: 100%;
-        max-width: 200px;
-        border: 0;
-        box-shadow: inset 1px 1px 5px #060606;
-        background: #0c1a5b;
-        padding: 5px 15px;
-        color: #0081a7;
-    }`
+`
 
 const eventHandlers = {
     cosCalculatorComponentHandler: () => {
