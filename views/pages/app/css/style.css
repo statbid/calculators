@@ -55,8 +55,148 @@ a {
   flex: 1 0 20px;
 }
 
-input[type="text"] {
-  border: 1px solid #1d2127;
+
+/* For Mobile Phone */
+
+.label-container {
+  padding: 0px 0px 10px 0px;
+}
+
+.bold-white {
+  color: white;
+  font-weight: 600;
+}
+
+.bold-light-white {
+  color: rgba(240, 250, 250, 0.8)
+}
+
+.sub-title {
+  color: #0081a7;
+  font-weight: 600;
+}
+
+.sub-section-head {
+  color: rgba(20, 240, 250, 0.8);
+  padding: 3%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 1px solid #004157;
+  background-color: rgba(220, 220, 255, 0.1);
   border-radius: 5px;
-  background-color: transparent;
+  text-align: center;
+}
+
+.big-font {
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+.calc-main {
+  margin-bottom: 2%;
+  background-color: #10151f;
+}
+
+.flex-column {
+  flex: 1;
+  padding: 20%;
+}
+
+.form-title {
+  color: #f0f0f0;
+  background-color: #004157;
+  padding: 0.1% 3%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.grid-cell {
+  padding: 1rem;
+  text-align: center;
+  border: 2px solid #004157;
+  margin: 1rem;
+  border-radius: 5px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.calculator-results,
+.form-body {
+  padding: 1% 3% 5% 3%;
+}
+
+.calculator-results {
+  border-radius: 0px 0px 5px 0px;
+}
+
+.form-body {
+  border-radius: 0px 5px 0px 0px;
+}
+
+input[type="radio"] {
+  border: 1px solid white;
+}
+
+input[type="text"] {
+  color: #0091cf;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 3% 2%;
+  border: 1px solid #004157;
+  border-radius: 5px;
+  background-color: #0f101f;
+  width: 90%;
+}
+
+.form-input {
+  padding: 1% 1% 5% 1%;
+  border: 1px solid #004157;
+  border-radius: 5px;
+  margin: 0.2rem;
+  background-color: rgba(50, 150, 190, 0.1);
+}
+
+@media only screen and (min-width: 600px) {
+  /* For Tablet */
+}
+
+@media only screen and (min-width: 768px) {
+
+  /* For Desktop */
+  input[type="text"] {
+    padding: 3% 4%;
+    width: 90%;
+  }
+
+  .calc-main {
+    display: grid;
+    grid-template-columns: 30% 70%;
+  }
+
+  #result-dashboard {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+
+  .form-input {
+    padding: 3% 5%;
+    margin: 0.3rem;
+  }
+
+  .form-body {
+    margin: 1rem;
+    margin-left: 0;
+    border: 1px solid #004157;
+    border-radius: 5px;
+    padding: 8% 10%;
+  }
+
+  .calculator-results {
+    margin: 1rem;
+    margin-right: 0;
+  }
 }
