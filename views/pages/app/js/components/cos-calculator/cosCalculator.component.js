@@ -29,12 +29,12 @@ const eventHandlers = {
         const optmizeEls = document.getElementsByName("metric-optimize")
 
         if (orderEl && revenueEl && goodsEl && shipEl && feeEl && expenseEl && optmizeEls) {
-            orderEl.value = "$" + parseFloat(orderEl.value).formatMoney()
-            revenueEl.value = "$" + parseFloat(revenueEl.value).formatMoney()
-            goodsEl.value = parseFloat(goodsEl.value) + " %"
-            shipEl.value = parseFloat(shipEl.value) + " %"
-            feeEl.value = parseFloat(feeEl.value) + " %"
-            expenseEl.value = parseFloat(expenseEl.value) + " %"
+            orderEl.value = "$" + parseFloat(orderEl.value).formatMoney(0, ".", ",")
+            revenueEl.value = "$" + parseFloat(revenueEl.value).formatMoney(0, ".", ",")
+            goodsEl.value = parseFloat(goodsEl.value).formatMoney(2, ".", ",") + " %"
+            shipEl.value = parseFloat(shipEl.value).formatMoney(2, ".", ",") + " %"
+            feeEl.value = parseFloat(feeEl.value).formatMoney(2, ".", ",") + " %"
+            expenseEl.value = parseFloat(expenseEl.value).formatMoney(2, ".", ",") + " %"
 
             CosCalculator.setResult()
 
@@ -43,27 +43,27 @@ const eventHandlers = {
             })
 
             orderEl.onchange = async (e) => {
-                orderEl.value = "$" + parseFloat(orderEl.value.replace("$", "")).formatMoney()
+                orderEl.value = "$" + parseFloat(orderEl.value.replaceAll(/[$,]/g, "")).formatMoney(0, ".", ",")
                 CosCalculator.setResult()
             }
             revenueEl.onchange = async (e) => {
-                revenueEl.value = "$" + parseFloat(revenueEl.value.replace("$", "")).formatMoney()
+                revenueEl.value = "$" + parseFloat(revenueEl.value.replaceAll(/[$,]/g, "")).formatMoney(0, ".", ",")
                 CosCalculator.setResult()
             }
             goodsEl.onchange = async (e) => {
-                goodsEl.value = parseFloat(goodsEl.value.replace("%", "")) + " %"
+                goodsEl.value = parseFloat(goodsEl.value.replace("%", "")).formatMoney(2, ".", ",") + " %"
                 CosCalculator.setResult()
             }
             shipEl.onchange = async (e) => {
-                shipEl.value = parseFloat(shipEl.value.replace("%", "")) + " %"
+                shipEl.value = parseFloat(shipEl.value.replace("%", "")).formatMoney(2, ".", ",") + " %"
                 CosCalculator.setResult()
             }
             feeEl.onchange = async (e) => {
-                feeEl.value = parseFloat(feeEl.value.replace("%", "")) + " %"
+                feeEl.value = parseFloat(feeEl.value.replace("%", "")).formatMoney(2, ".", ",") + " %"
                 CosCalculator.setResult()
             }
             expenseEl.onchange = async (e) => {
-                expenseEl.value = parseFloat(expenseEl.value.replace("%", "")) + " %"
+                expenseEl.value = parseFloat(expenseEl.value.replace("%", "")).formatMoney(2, ".", ",") + " %"
                 CosCalculator.setResult()
             }
         }

@@ -66,8 +66,8 @@ export class CosCalculator {
       const r = goods + ship + fee + expense
       const marginal = (1 == optimize) ? (revenue / order * (1 - r)) : (1 - r)
       const paid = marginal / 2
-      const formattedMarginal = (100 * marginal).toFixed(1)
-      const formattedPaid = (100 * paid).toFixed(1)
+      const formattedMarginal = (100 * marginal)
+      const formattedPaid = (100 * paid)
       return { marginal: formattedMarginal, paid: formattedPaid }
     }
   }
@@ -105,8 +105,8 @@ export class CosCalculator {
     const growth = CosCalculator.getFormValues()
     const { marginal, paid } = CosCalculator.calculateGrowth(growth)
     if (marginal && paid) {
-      document.getElementById("metric_marginal").innerHTML = marginal + " <span>%</span>";
-      document.getElementById("metric_paid").innerHTML = paid + " <span>%</span>";
+      document.getElementById("metric_marginal").innerHTML = marginal.formatMoney(2, ".", ",") + " %"
+      document.getElementById("metric_paid").innerHTML = paid.formatMoney(2, ".", ",") + " %"
     }
   }
 }

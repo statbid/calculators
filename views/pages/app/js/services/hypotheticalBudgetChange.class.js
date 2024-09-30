@@ -24,9 +24,9 @@ export class HypotheticalBudgetChange {
 
     if (spendEl && revenueEl && newCosEl) {
       budget = {
-        spend: parseFloat(spendEl.value),
-        revenue: parseFloat(revenueEl.value),
-        newCos: parseFloat(newCosEl.value)
+        spend: parseFloat(spendEl.value.replaceAll(/[$,]/g, "")),
+        revenue: parseFloat(revenueEl.value.replaceAll(/[$,]/g, "")),
+        newCos: parseFloat(newCosEl.value.replaceAll(/[$,]/g, ""))
       }
     } else {
       throw new Error(`budgetSpend, budgetRevenue, budgetNewCos cannot be undefined.`)
@@ -37,13 +37,14 @@ export class HypotheticalBudgetChange {
   static setResult() {
     const budget = HypotheticalBudgetChange.calculateBudgetCOS()
     const { budgetHnr, currentCos, budgetHns, budgetIs, budgetIr, budgetIcos } = budget
+
     if (isFinite(budgetHns)) {
-      document.getElementById("budget-current-cos-value").value = (100 * currentCos).formatMoney(2, ".", ",") + "%";
-      document.getElementById("budget-hns").innerHTML = (100 * budgetHns).formatMoney(2, ".", ",") + "%";
-      document.getElementById("budget-hnr").innerHTML = "$" + budgetHnr.formatMoney(0, ".", ",");
-      document.getElementById("budget-is").innerHTML = "$" + budgetIs.formatMoney(0, ".", ",");
-      document.getElementById("budget-ir").innerHTML = "$" + budgetIr.formatMoney(0, ".", ",");
-      document.getElementById("budget-icos").innerHTML = budgetIcos.formatMoney(2, ".", ",") + "%";
+      document.getElementById("budget-current-cos-value").value = (100 * currentCos).formatMoney(2, ".", ",") + "%"
+      document.getElementById("budget-hns").innerHTML = (100 * budgetHns).formatMoney(2, ".", ",") + "%"
+      document.getElementById("budget-hnr").innerHTML = "$" + budgetHnr.formatMoney(0, ".", ",")
+      document.getElementById("budget-is").innerHTML = "$" + budgetIs.formatMoney(0, ".", ",")
+      document.getElementById("budget-ir").innerHTML = "$" + budgetIr.formatMoney(0, ".", ",")
+      document.getElementById("budget-icos").innerHTML = budgetIcos.formatMoney(2, ".", ",") + "%"
     }
   }
 }
