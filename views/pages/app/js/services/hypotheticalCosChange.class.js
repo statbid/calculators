@@ -4,7 +4,6 @@ export class HypotheticalCosChange {
 
   static calculateGrowth() {
     const cos = HypotheticalCosChange.getFormValues()
-    console.log(cos)
     cos.currentCos = cos.spend / cos.revenue
     cos.cosHns = Math.pow(cos.newCos / cos.currentCos, 2) * cos.spend
     cos.cosHnr = cos.cosHns / cos.newCos
