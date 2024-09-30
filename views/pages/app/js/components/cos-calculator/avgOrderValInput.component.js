@@ -8,7 +8,7 @@ const template = `
       <label for="metric_order" class="label-container">Average Order Value</label>
     </div>
     <div class="input-container">
-      <input type="text" id="metric-order" class="metric_us" value="200">
+      <input type="text" id="metric-order" class="metric_us" value="2000">
     </div>
   </div>
 `

@@ -12,9 +12,15 @@ const style = `
   #main-panel-component {
     /*border-radius: 1%;
     border: 1px solid #1d2127;*/    
-    margin-top:1rem;
-    /*padding:2% 2%;   */
+    margin:0;
+    padding: 2%;
   }
+  @media only screen and (min-width:768px){
+ 
+  #main-panel-component { 
+    padding: 0% 0.5%;
+  }
+    }
 `
 
 const eventHandlers = {}

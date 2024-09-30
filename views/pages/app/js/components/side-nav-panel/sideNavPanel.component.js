@@ -50,8 +50,8 @@ const style = `
 
   #side-nav-panel-component {    
     color: #a5a0b4;     
-    height: 100%;   
-    padding: 0% 10% 5% 0%;      
+    height: auto;   
+    padding: 0% 10% 1% 0%;      
   }
 
   #links-table td {
@@ -65,7 +65,7 @@ const style = `
     background-color: rgba(30,50,70, 1);
     border-radius: 5px;
     width:50vw;
-    padding: 3% 5%;
+    padding: 5% 3%;
     position: absolute;
     left: 0px;
     top: 7rem;
@@ -74,6 +74,7 @@ const style = `
     display: none;
   }
 
+  
   .current-link {  
     background-color: rgba(0,180,250, 0.2);
     color: #f3f3f7;
@@ -88,22 +89,23 @@ const style = `
     background-color: rgba(0,180,250, 0.2);
   }
 
-  @media only screen and (min-width: 768px){
+  @media only screen and (min-width: 768px){    
     #menu-list {
-      position:absolute;
+      position: absolute;
       width: 20vW;      
-      padding:3% 1%;
-      top:10%;
-      left:2%;
-      margin:0;
-      z-index:1;
-    }    
+      padding: 2% 1%;
+      top: 10%;
+      left: 2%;
+      margin: 0;
+      z-index: 1;
+    }
+      
     #title-menu {
-      position:absolute;
-      left:0px;      
+      position: absolute;
+      left: 0px;      
       width: 100vw;    
       padding: 0% 2%;
-      margin:0;
+      margin: 0;
     }
     
     #links-table  td {
@@ -112,6 +114,12 @@ const style = `
 
     #org-name{
       padding: 0.1% 0.5%; 
+    }
+
+    #side-nav-panel-component {    
+      color: #a5a0b4;     
+      height: auto;   
+      padding: 0% 10% 5% 0%;      
     }
   }
 

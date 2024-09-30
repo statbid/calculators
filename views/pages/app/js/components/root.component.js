@@ -4,38 +4,44 @@ import { Component } from 'lib/component.class.js'
 import sideNavPanelComponent from './side-nav-panel/sideNavPanel.component.js'
 import topNavbarComponent from './top-navbar/topNavbar.component.js'
 import mainPanelComponent from './main-panel/mainPanel.component.js'
+import footerComponent from './footer/footer.component.js'
 //${topNavbarComponent.template}
 const template = `
-  <div>
-    <div id="root-component">      
-      <div id="main-container">
-        ${sideNavPanelComponent.template}
-        ${mainPanelComponent.template}
-      </div>
+  <div id="root-component">      
+    <div id="main-container">
+      ${sideNavPanelComponent.template}
+      ${mainPanelComponent.template}
+      ${footerComponent.template}       
     </div>
-  </div>`
+         
+  </div>  
+  `
 
 const style = `
 /* for mobile phones*/
 
   #main-container {
-    margin:auto;
-    width:100%;
-    height:100%;
+    margin: 0;
+    width: 100%;
+    height: 100%;    
+  }
+  
+  #root-component {
+    margin:0;
   }
 
   @media only screen and (min-width: 600px){
   /* For Tablets */
-    margin:auto;
-    width:100%;
+    margin: auto;
+    width: 100%;
   }
 
   @media only screen and (min-width: 768px){
     /* For desktop: */
     #main-container {
-      margin:auto;
-      max-width:1300px;    
-      min-height:100vh;    
+      margin: auto;
+      max-width: 1300px;    
+      min-height: 100vh;    
     }    
   } 
   `

@@ -29,11 +29,46 @@ const eventHandlers = {
         const optmizeEls = document.getElementsByName("metric-optimize")
 
         if (orderEl && revenueEl && goodsEl && shipEl && feeEl && expenseEl && optmizeEls) {
+            orderEl.value = "$" + parseFloat(orderEl.value).formatMoney()
+            revenueEl.value = "$" + parseFloat(revenueEl.value).formatMoney()
+            goodsEl.value = parseFloat(goodsEl.value) + " %"
+            shipEl.value = parseFloat(shipEl.value) + " %"
+            feeEl.value = parseFloat(feeEl.value) + " %"
+            expenseEl.value = parseFloat(expenseEl.value) + " %"
+
             CosCalculator.setResult()
+
             document.querySelectorAll("#cos-calculator input").forEach(el => {
                 el.onchange = async (e) => CosCalculator.setResult()
             })
+
+            orderEl.onchange = async (e) => {
+                orderEl.value = "$" + parseFloat(orderEl.value.replace("$", "")).formatMoney()
+                CosCalculator.setResult()
+            }
+            revenueEl.onchange = async (e) => {
+                revenueEl.value = "$" + parseFloat(revenueEl.value.replace("$", "")).formatMoney()
+                CosCalculator.setResult()
+            }
+            goodsEl.onchange = async (e) => {
+                goodsEl.value = parseFloat(goodsEl.value.replace("%", "")) + " %"
+                CosCalculator.setResult()
+            }
+            shipEl.onchange = async (e) => {
+                shipEl.value = parseFloat(shipEl.value.replace("%", "")) + " %"
+                CosCalculator.setResult()
+            }
+            feeEl.onchange = async (e) => {
+                feeEl.value = parseFloat(feeEl.value.replace("%", "")) + " %"
+                CosCalculator.setResult()
+            }
+            expenseEl.onchange = async (e) => {
+                expenseEl.value = parseFloat(expenseEl.value.replace("%", "")) + " %"
+                CosCalculator.setResult()
+            }
         }
+
+
     }
 }
 

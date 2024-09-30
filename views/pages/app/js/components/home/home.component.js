@@ -45,7 +45,7 @@ const template = `
 
 const style = `
   .calculator {    
-    margin: 1rem;
+    margin-bottom: 1rem;
     color: #a5a0b4;    
     font-size: 0.95rem;
   }
@@ -89,8 +89,11 @@ const style = `
     
     #home-component {    
       display:grid;    
-      grid-template-columns:25% 25% 25% 25%;
+      grid-template-columns: 25% 25% 25% 25%;
       height: 100vh;
+    }
+    .calculator {
+      margin:1rem;
     }
   }
 `

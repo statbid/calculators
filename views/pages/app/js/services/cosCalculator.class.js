@@ -89,12 +89,12 @@ export class CosCalculator {
         }
       })
       growth = {
-        order: parseFloat(orderEl.value),
-        revenue: parseFloat(revenueEl.value),
-        goods: parseFloat(goodsEl.value) / 100,
-        ship: parseFloat(shipEl.value) / 100,
-        fee: parseFloat(feeEl.value) / 100,
-        expense: parseFloat(expenseEl.value) / 100,
+        order: parseFloat(orderEl.value.replace("$", "")),
+        revenue: parseFloat(revenueEl.value.replace("$", "")),
+        goods: parseFloat(goodsEl.value.replace("%", "")) / 100,
+        ship: parseFloat(shipEl.value.replace("%", "")) / 100,
+        fee: parseFloat(feeEl.value.replace("%", "")) / 100,
+        expense: parseFloat(expenseEl.value.replace("%", "")) / 100,
         optimize: parseFloat(optmizeElValue)
       }
     }
