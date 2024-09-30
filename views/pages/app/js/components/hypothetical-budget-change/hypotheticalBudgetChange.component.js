@@ -1,6 +1,7 @@
 'use strict'
 
 import { Component } from 'lib/component.class.js'
+import { HypotheticalBudgetChange } from '../../services/hypotheticalBudgetChange.class.js'
 
 const template = `
 <div class="hypothetical_cos_calculator">
@@ -8,13 +9,13 @@ const template = `
         <p>Hypothetical Budget Change</p>
     </div>
     <div class="calc-main">
-        <div class="form-body">
+        <div class="form-body" id="hyp-budget-change">
             <div class="form-input">
                 <div class="label-container">
                     <label>Current Tier Spend</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" id="budget_spend_value" class="tbl_us" value="5000">
+                    <input type="text" id="budget-spend-value" class="tbl-us" value="5000">
                 </div>                
             </div>
             <div class="form-input">
@@ -22,7 +23,7 @@ const template = `
                     <label>Current Tier Revenue</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" id="budget_revenue_value" class="tbl_us" value="20000">
+                    <input type="text" id="budget-revenue-value" class="tbl-us" value="20000">
                 </div>
             </div>        
             <div class="form-input">
@@ -30,7 +31,7 @@ const template = `
                     <label>Current COS</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" id="budget_current_cos_value" class="tbl_percent" disabled>
+                    <input type="text" id="budget-current-cos-value" class="tbl-percent" disabled>
                 </div>                
             </div>
             <div class="form-input">
@@ -38,31 +39,31 @@ const template = `
                     <label>Hypothetical New Spend</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" id="budget_new_cos_value" class="tbl_us" value="7500">
+                    <input type="text" id="budget-new-cos-value" class="tbl-us" value="7500">
                 </div>                
             </div>
         </div>
         <div class="calculator-results">
-            <p class="sub-section-head bottom-border-thick">Results</p>
+            <p class="sub-section-head">Results</p>
             <div class="result-dashboard">
-                <div>   
-                    <p class="grid-cell"><span id="budget_hns" class="big-font"></span><br><br>
+                <div class="grid-cell">   
+                    <p><span id="budget-hns" class="big-font"></span><br><br>
                     <span class="sub-title">Hypothetical New COS</span></p>
                 </div>
-                <div>
-                    <p class="grid-cell"><span id="budget_hnr" class="big-font"></span><br><br>
+                <div class="grid-cell">
+                    <p><span id="budget-hnr" class="big-font"></span><br><br>
                     <span class="sub-title">Hypothetical New Revenue</span></p>
                 </div>
-                <div>
-                    <p class="grid-cell"><span id="budget_is" class="big-font"></span><br><br>
+                <div class="grid-cell">
+                    <p><span id="budget-is" class="big-font"></span><br><br>
                     <span class="sub-title">Incremental Spend</span></p>
                 </div>
-                <div>
-                    <p class="grid-cell"><span id="budget_ir" class="big-font"></span><br><br>
+                <div class="grid-cell">
+                    <p><span id="budget-ir" class="big-font"></span><br><br>
                     <span class="sub-title">Incremental Revenue</span></p>
                 </div>
-                <div>
-                    <p class="grid-cell"><span id="budget_icos" class="big-font"></span><br><br>
+                <div class="grid-cell">
+                    <p><span id="budget-icos" class="big-font"></span><br><br>
                     <span class="sub-title">Incremental COS</span></p>
                 </div>
             </div>
@@ -73,7 +74,21 @@ const template = `
 
 const style = ``
 
-const eventHandlers = {}
+const eventHandlers = {
+    hypotheticalBudgetChangeComponentHandler: () => {
+        const spendEl = document.getElementById("budget-spend-value")
+        const revenueEl = document.getElementById("budget-revenue-value")
+        const newCosEl = document.getElementById("budget-new-cos-value")
+
+        if (spendEl && revenueEl && newCosEl) {
+            HypotheticalBudgetChange.setResult()
+            document.querySelectorAll("#hyp-budget-change input").forEach(el => {
+                el.onchange = async (e) => HypotheticalBudgetChange.setResult()
+            })
+        }
+    }
+}
+
 
 const hypotheticalBudgetChangeComponent = new Component({ template, style, eventHandlers })
 

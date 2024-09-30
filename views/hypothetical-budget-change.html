@@ -1,43 +1,56 @@
 <!-- Include jQuery and autoNumeric libraries -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/2.0.10/autoNumeric.js"></script>
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/2.0.10/autoNumeric.js"></script>
 
 <div class="hypothetical_cos_calculator">
-    <div class="hypothetical_cos_calculator_titel">Hypothetical Budget Change</div>
+    <div class="hypothetical_cos_calculator_titel">Hypothetical Budget Change
+    </div>
     <div class="hypothetical_cos_calculator_divider"></div>
-    
+
     <div class="hypothetical_cos_calculator_inputs">
         <div class="hypothetical_cos_calculator_input_section">
-            <div class="hypothetical_cos_calculator_row hypothetical_cos_calculator_row_f">
-                <div class="hypothetical_cos_calculator_cell">Current Tier Spend</div>
+            <div
+                class="hypothetical_cos_calculator_row hypothetical_cos_calculator_row_f">
+                <div class="hypothetical_cos_calculator_cell">Current Tier Spend
+                </div>
                 <div class="hypothetical_cos_calculator_cell">
-                    <input type="text" id="budget_spend_value" class="tbl_us" value="5000">
+                    <input type="text" id="budget_spend_value" class="tbl_us"
+                        value="5000">
                 </div>
                 <div style="clear: both;"></div>
             </div>
 
             <div class="hypothetical_cos_calculator_row">
-                <div class="hypothetical_cos_calculator_cell">Current Tier Revenue</div>
+                <div class="hypothetical_cos_calculator_cell">Current Tier
+                    Revenue</div>
                 <div class="hypothetical_cos_calculator_cell">
-                    <input type="text" id="budget_revenue_value" class="tbl_us" value="20000">
+                    <input type="text" id="budget_revenue_value" class="tbl_us"
+                        value="20000">
                 </div>
                 <div style="clear: both;"></div>
             </div>
         </div>
 
-        <div class="hypothetical_cos_calculator_input_section" style="margin-right: 0px;">
-            <div class="hypothetical_cos_calculator_row hypothetical_cos_calculator_row_f hypothetical_cos_calculator_addrs">
+        <div class="hypothetical_cos_calculator_input_section"
+            style="margin-right: 0px;">
+            <div
+                class="hypothetical_cos_calculator_row hypothetical_cos_calculator_row_f hypothetical_cos_calculator_addrs">
                 <div class="hypothetical_cos_calculator_cell">Current COS</div>
                 <div class="hypothetical_cos_calculator_cell">
-                    <input type="text" id="budget_current_cos_value" class="tbl_percent" disabled>
+                    <input type="text" id="budget_current_cos_value"
+                        class="tbl_percent" disabled>
                 </div>
                 <div style="clear: both;"></div>
             </div>
 
             <div class="hypothetical_cos_calculator_row">
-                <div class="hypothetical_cos_calculator_cell">Hypothetical New Spend</div>
+                <div class="hypothetical_cos_calculator_cell">Hypothetical New
+                    Spend</div>
                 <div class="hypothetical_cos_calculator_cell">
-                    <input type="text" id="budget_new_cos_value" class="tbl_us" value="7500">
+                    <input type="text" id="budget_new_cos_value" class="tbl_us"
+                        value="7500">
                 </div>
                 <div style="clear: both;"></div>
             </div>
@@ -47,11 +60,14 @@
     <div class="hypothetical_cos_calculator_results">
         <div id="hcoscontainer" style="min-width: 380px"></div>
 
-        <div class="hypothetical_cos_calculator_row hypothetical_cos_calculator_row_f">
-            Hypothetical New COS: <span id="budget_hns" class="gc_results"></span>
+        <div
+            class="hypothetical_cos_calculator_row hypothetical_cos_calculator_row_f">
+            Hypothetical New COS: <span id="budget_hns"
+                class="gc_results"></span>
         </div>
         <div class="hypothetical_cos_calculator_row">
-            Hypothetical New Revenue: <span id="budget_hnr" class="gc_results"></span>
+            Hypothetical New Revenue: <span id="budget_hnr"
+                class="gc_results"></span>
         </div>
 
         <div class="hypothetical_cos_calculator_divider"></div>
@@ -162,7 +178,7 @@
         }
     }
 
-    jQuery(function() {
+    jQuery(function () {
         jQuery(".tbl_us").autoNumeric("init", {
             currencySymbol: "$",
             digitGroupSeparator: ",",
@@ -178,14 +194,14 @@
             currencySymbolPlacement: "s"
         });
 
-        jQuery("#budget_spend_value, #budget_revenue_value, #budget_new_cos_value").change(function() {
+        jQuery("#budget_spend_value, #budget_revenue_value, #budget_new_cos_value").change(function () {
             calculateBudgetCOS();
         });
 
         calculateBudgetCOS();
     });
 
-    Number.prototype.formatMoney = function(e, t, u) {
+    Number.prototype.formatMoney = function (e, t, u) {
         var n = this,
             r = (e = isNaN(e = Math.abs(e)) ? 2 : e, t = null == t ? "." : t, u = null == u ? "," : u, n < 0 ? "-" : ""),
             a = parseInt(n = Math.abs(+n || 0).toFixed(e)) + "",

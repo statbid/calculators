@@ -16,16 +16,7 @@ const template = `
   </div>
 `
 
-const style = `
-
-  @media only screen and (min-width: 600px){
-
-  }
-
-  @media only screen and (min-width: 768px){
-
-  }
-`
+const style = ``
 
 const eventHandlers = {}
 

@@ -43,10 +43,9 @@ const style = `
   }
 
   #title-menu {
-    position:top;
-    /*background-color: #006177;*/    
+    position: top;    
     width: 100vw;    
-    padding:0.5% 3%;
+    padding: 0.5% 3%;
   } 
 
   #side-nav-panel-component {    
@@ -66,7 +65,7 @@ const style = `
     background-color: rgba(30,50,70, 1);
     border-radius: 5px;
     width:50vw;
-    padding: 5%;
+    padding: 3% 5%;
     position: absolute;
     left: 0px;
     top: 7rem;
@@ -92,19 +91,23 @@ const style = `
   @media only screen and (min-width: 768px){
     #menu-list {
       position:absolute;
-      width: 10vW;            
-      padding:5%;
+      width: 20vW;      
+      padding:3% 1%;
       top:10%;
+      left:2%;
       margin:0;
       z-index:1;
     }    
     #title-menu {
       position:absolute;
-      left:0px;
-      /*background-color: #006177;*/
+      left:0px;      
       width: 100vw;    
-      padding:0% 2%;
+      padding: 0% 2%;
       margin:0;
+    }
+    
+    #links-table  td {
+      padding: 2% 4%;
     }
 
     #org-name{
@@ -123,17 +126,23 @@ const eventHandlers = {
     const incTestBudgetLengthLink = document.getElementById('inc-test-budget-length-link')
     homeLink.classList.add('current-link')
 
-    const orgName = document.getElementById('org-name')
+    const sideNavPanelComponent = document.getElementById('side-nav-panel-component')
+    const mainPanel = document.getElementById('main-panel-component')
     const menuList = document.getElementById('menu-list')
     menuList.style.display = "none"
     let isMenuClicked = false
-    orgName.onclick = async (e) => {
+
+    sideNavPanelComponent.onclick = async (e) => {
       isMenuClicked = !isMenuClicked
       if (isMenuClicked) {
         menuList.style.display = "block"
       } else {
         menuList.style.display = "none"
       }
+    }
+
+    mainPanel.onclick = async (e) => {
+      menuList.style.display = "none"
     }
 
     homeLink.onclick = async (e) => {

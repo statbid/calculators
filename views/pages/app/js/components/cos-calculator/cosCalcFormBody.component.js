@@ -11,7 +11,7 @@ import optimizationInputComponent from './optimizationInput.component.js'
 
 const template = `
 <div class="form-body" id="cos-calculator">
-    <p class="sub-section-head bottom-border-thick">Business Metrics</p>
+    <p class="sub-section-head">Business Metrics</p>
     ${avgOrderValInputComponent.template}
     ${avgLifeTimeRevInputComponent.template}
     ${avgGoodsCostInputComponent.template}
@@ -22,16 +22,7 @@ const template = `
 </div>
 `
 
-const style = `
-
-  @media only screen and (min-width: 600px){
-
-  }
-
-  @media only screen and (min-width: 768px){
-
-  }
-`
+const style = ``
 
 const eventHandlers = {}
 

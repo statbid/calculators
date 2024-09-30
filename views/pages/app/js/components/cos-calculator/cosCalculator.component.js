@@ -16,7 +16,7 @@ const template = `
     </div>
 `
 
-const style = ` `
+const style = ``
 
 const eventHandlers = {
     cosCalculatorComponentHandler: () => {
