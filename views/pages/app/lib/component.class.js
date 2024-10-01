@@ -47,6 +47,9 @@ export class Component {
       }
     }
   }
+
+  // call this function whenever component is loaded
+  // that ensures the eventHandlers initiated
   load(parentElement) {
     parentElement.innerHTML = this.template
     this.setEventHandlers()

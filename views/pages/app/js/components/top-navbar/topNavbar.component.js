@@ -3,9 +3,10 @@
 import { Component } from 'lib/component.class.js'
 
 const template = `
-<div id="top-navbar-component">  
-  <p id="app-title">StatBid</p>  
-</div>`
+  <div id="top-navbar-component">  
+    <p id="app-title">StatBid</p>  
+  </div>
+`
 
 const style = `
   #top-navbar-component {    
@@ -18,8 +19,8 @@ const style = `
     color: #d0d1d7;
     padding: 0px 20px;
     font-size: 1.2rem;
-    margin-left:1rem;
-    font-weight:600;    
+    margin-left: 1rem;
+    font-weight: 600;    
   }
   
 `

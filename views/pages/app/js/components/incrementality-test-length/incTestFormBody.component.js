@@ -2,10 +2,11 @@
 
 import { Component } from 'lib/component.class.js'
 
-
 const template = `
   <div class="form-body" id="inc-test-length">
-      <p class="sub-section-head">Sitewide Metrics</p>            
+
+      <p class="sub-section-head">Sitewide Metrics</p>
+
       <div class="form-input">
           <div class="label-container">
               <label>Average Monthly Revenue (US)</label>
@@ -45,9 +46,7 @@ const template = `
       </div>
 
   </div>
-
 `
-
 const style = ``
 
 const eventHandlers = {}

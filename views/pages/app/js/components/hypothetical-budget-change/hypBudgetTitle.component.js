@@ -7,7 +7,6 @@ const template = `
     <p>Hypothetical Budget Change</p>
   </div>
 `
-
 const style = ``
 
 const eventHandlers = {}

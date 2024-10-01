@@ -8,13 +8,13 @@ import incTestCalcResultComponent from './incTestCalcResult.component.js'
 import { IncrementalityTestLength } from '../../services/incrementalityTest.class.js'
 
 const template = `
-<div id="incrementality-test-component">
-    ${incTestTitleComponent.template}
-    <div class="calc-main">    
-        ${incTestFormBodyComponent.template}
-        ${incTestCalcResultComponent.template}        
+    <div id="incrementality-test-component">
+        ${incTestTitleComponent.template}
+        <div class="calc-main">    
+            ${incTestFormBodyComponent.template}
+            ${incTestCalcResultComponent.template}        
+        </div>
     </div>
-</div>
 `
 const style = ``
 

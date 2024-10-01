@@ -14,14 +14,11 @@ const links = [
   { id: 'hyp-cos-change-link', text: 'Hypothetical COS Change Calculator' },
   { id: 'inc-test-budget-length-link', text: 'Incrementality Test Budget and Length Calculator' }]
 
-let linksTable = `<table id="links-table">`
-linksTable += links.map((link) => {
-  const { id, text } = link
-  const row = `<tr>
-  <td class="hover-bg-color" id="${id}">${text}</td>
-  </tr>`
-  return row
-}).join("\n") + `</table>`
+const linkRow = (link) => `
+<tr>
+  <td class="hover-bg-color" id="${link.id}">${link.text}</td>
+</tr>
+`
 
 const template = `
   <div id="side-nav-panel-component">
@@ -29,11 +26,16 @@ const template = `
       <p id="org-name">StatBid</p>
     </div>
     <div id="menu-list">
-      ${linksTable}
+      <table id="links-table">
+        ${links.map(linkRow).join("\n")}
+      </table>
     </div>
-  </div>`
+  </div>
+`
 
 const style = `
+  /* General */
+
   #org-name {
     color: #90e2f7;
     font-size: 18px;
@@ -49,7 +51,7 @@ const style = `
   } 
 
   #side-nav-panel-component {    
-    color: #a5a0b4;     
+    color: #b0b0b0;     
     height: auto;   
     padding: 0% 10% 1% 0%;      
   }
@@ -69,11 +71,10 @@ const style = `
     position: absolute;
     left: 0px;
     top: 7rem;
-    z-index:1;    
+    z-index: 1;    
     margin: -10% 0%;
     display: none;
   }
-
   
   .current-link {  
     background-color: rgba(0,180,250, 0.2);
@@ -90,6 +91,7 @@ const style = `
   }
 
   @media only screen and (min-width: 768px){    
+    
     #menu-list {
       position: absolute;
       width: 20vW;      
@@ -116,16 +118,16 @@ const style = `
       padding: 0.1% 0.5%; 
     }
 
-    #side-nav-panel-component {    
-      color: #a5a0b4;     
+    #side-nav-panel-component {
       height: auto;   
       padding: 0% 10% 5% 0%;      
     }
-  }
 
+  }
 `
 
 const eventHandlers = {
+
   sideNavPanelHandler: () => {
     const homeLink = document.getElementById('home-link')
     const cosCalculatorLink = document.getElementById('cos-calculator-link')
@@ -233,6 +235,7 @@ const eventHandlers = {
         throw new Error(e)
       }
     }
+
   }
 }
 

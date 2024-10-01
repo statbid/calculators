@@ -48,11 +48,9 @@ const eventHandlers = {
                 newCosEl.value = "$" + parseFloat(newCosEl.value.replaceAll(/[$,]/g, "")).formatMoney(0, ".", ",")
                 HypotheticalBudgetChange.setResult()
             }
-
         }
     }
 }
-
 
 const hypotheticalBudgetChangeComponent = new Component({ template, style, eventHandlers })
 
