@@ -1,24 +1,17 @@
 'use strict'
 
 export class Growth {
+
   constructor(growthObj) {
     try {
       this.validateGrowthObj(growthObj)
-      const {
-        order,
-        revenue,
-        goods,
-        ship,
-        fee,
-        expense,
-        optimize } = growthObj
-      this.order = order
-      this.revenue = revenue
-      this.goods = goods
-      this.ship = ship
-      this.fee = fee
-      this.expense = expense
-      this.optimize = optimize
+      this.order = growthObj.order
+      this.revenue = growthObj.revenue
+      this.goods = growthObj.goods
+      this.ship = growthObj.ship
+      this.fee = growthObj.fee
+      this.expense = growthObj.expense
+      this.optimize = growthObj.optimize
     } catch (e) {
       throw new Error(e)
     }
@@ -80,17 +73,23 @@ export class CosCalculator {
     const feeEl = document.getElementById("metric-fee")
     const expenseEl = document.getElementById("metric-expense")
     const optmizeEls = document.getElementsByName("metric-optimize")
+
     let growth = {}
-    if (orderEl && revenueEl && goodsEl && shipEl && feeEl && expenseEl && optmizeEls) {
+
+    const allElementsExist = orderEl && revenueEl && goodsEl &&
+      shipEl && feeEl && expenseEl && optmizeEls
+
+    if (allElementsExist) {
       let optmizeElValue
       optmizeEls.forEach(el => {
         if (el.checked == true) {
           optmizeElValue = el.value
         }
       })
+
       growth = {
-        order: parseFloat(orderEl.value.replace("$", "")),
-        revenue: parseFloat(revenueEl.value.replace("$", "")),
+        order: parseFloat(orderEl.value.replaceAll(/[$,]/g, "")),
+        revenue: parseFloat(revenueEl.value.replaceAll(/[$,]/g, "")),
         goods: parseFloat(goodsEl.value.replace("%", "")) / 100,
         ship: parseFloat(shipEl.value.replace("%", "")) / 100,
         fee: parseFloat(feeEl.value.replace("%", "")) / 100,
@@ -105,8 +104,8 @@ export class CosCalculator {
     const growth = CosCalculator.getFormValues()
     const { marginal, paid } = CosCalculator.calculateGrowth(growth)
     if (marginal && paid) {
-      document.getElementById("metric_marginal").innerHTML = marginal.formatMoney(2, ".", ",") + " %"
-      document.getElementById("metric_paid").innerHTML = paid.formatMoney(2, ".", ",") + " %"
+      document.getElementById("metric_marginal").innerHTML = `${marginal.formatMoney(2, ".", ",")} %`
+      document.getElementById("metric_paid").innerHTML = `${paid.formatMoney(2, ".", ",")} %`
     }
   }
 }

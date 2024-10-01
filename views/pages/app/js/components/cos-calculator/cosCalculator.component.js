@@ -28,7 +28,10 @@ const eventHandlers = {
         const expenseEl = document.getElementById("metric-expense")
         const optmizeEls = document.getElementsByName("metric-optimize")
 
-        if (orderEl && revenueEl && goodsEl && shipEl && feeEl && expenseEl && optmizeEls) {
+        const allElExist = orderEl && revenueEl && goodsEl && shipEl &&
+            feeEl && expenseEl && optmizeEls
+
+        if (allElExist) {
             orderEl.value = "$" + parseFloat(orderEl.value).formatMoney(0, ".", ",")
             revenueEl.value = "$" + parseFloat(revenueEl.value).formatMoney(0, ".", ",")
             goodsEl.value = parseFloat(goodsEl.value).formatMoney(2, ".", ",") + " %"
@@ -38,7 +41,7 @@ const eventHandlers = {
 
             CosCalculator.setResult()
 
-            document.querySelectorAll("#cos-calculator input").forEach(el => {
+            document.querySelectorAll("#cos-calculator-form input").forEach(el => {
                 el.onchange = async (e) => CosCalculator.setResult()
             })
 
@@ -67,8 +70,6 @@ const eventHandlers = {
                 CosCalculator.setResult()
             }
         }
-
-
     }
 }
 

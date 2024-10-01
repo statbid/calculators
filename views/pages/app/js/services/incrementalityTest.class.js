@@ -37,9 +37,9 @@ export class IncrementalityTestLength {
     const { tblLe, tblYnMin, tblYnMax } = incrementality
 
     if (isFinite(tblLe)) {
-      document.getElementById("tbl-yn-min").innerHTML = tblYnMin.formatMoney(0, ".", ",") + " Days"
-      document.getElementById("tbl-yn-max").innerHTML = tblYnMax.formatMoney(0, ".", ",") + " Days"
-      document.getElementById("tbl-le").innerHTML = tblLe.formatMoney(0, ".", ",") + " Days"
+      document.getElementById("tbl-yn-min").innerHTML = `${tblYnMin.formatMoney(0, ".", ",")} Days`
+      document.getElementById("tbl-yn-max").innerHTML = `${tblYnMax.formatMoney(0, ".", ",")} Days`
+      document.getElementById("tbl-le").innerHTML = `${tblLe.formatMoney(0, ".", ",")} Days`
     } else {
       document.getElementById("tbl-yn-min").innerHTML = "0 Days"
       document.getElementById("tbl-yn-max").innerHTML = "0 Days"

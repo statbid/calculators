@@ -1,7 +1,6 @@
 'use strict'
 
 export class HypotheticalCosChange {
-
   static calculateGrowth() {
     const cos = HypotheticalCosChange.getFormValues()
     cos.currentCos = cos.spend / cos.revenue
@@ -10,7 +9,6 @@ export class HypotheticalCosChange {
     cos.cosIs = cos.cosHns - cos.spend
     cos.cosIr = cos.cosHnr - cos.revenue
     cos.cosIcos = (cos.cosIs / cos.cosIr) * 100
-
     return cos
   }
 

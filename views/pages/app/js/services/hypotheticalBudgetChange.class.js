@@ -3,7 +3,6 @@
 export class HypotheticalBudgetChange {
 
   static calculateBudgetCOS() {
-
     const budget = HypotheticalBudgetChange.getFormValues()
     budget.currentCos = budget.spend / budget.revenue
     budget.budgetHns = Math.sqrt(budget.newCos / budget.spend) * budget.currentCos
@@ -11,7 +10,6 @@ export class HypotheticalBudgetChange {
     budget.budgetIs = budget.newCos - budget.spend
     budget.budgetIr = budget.budgetHnr - budget.revenue
     budget.budgetIcos = (budget.budgetIs / budget.budgetIr) * 100
-
     return budget
   }
 

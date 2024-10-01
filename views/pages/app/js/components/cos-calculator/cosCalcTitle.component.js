@@ -7,7 +7,6 @@ const template = `
     <p>COS Calculator</p>
   </div>
 `
-
 const style = ``
 
 const eventHandlers = {}

@@ -8,16 +8,19 @@ import hypCosCalcresultComponent from './hypCosCalcResult.component.js'
 import { HypotheticalCosChange } from '../../services/hypotheticalCosChange.class.js'
 
 const template = `
-<div class="hypothetical-cos-calculator">
-    ${hypCosTitleComponent.template}    
-    <div class="calc-main">
-        ${hypCosFormBodyComponent.template}
-        ${hypCosCalcresultComponent.template}
+    <div class="hypothetical-cos-calculator">
+        ${hypCosTitleComponent.template}    
+        <div class="calc-main">
+            ${hypCosFormBodyComponent.template}
+            ${hypCosCalcresultComponent.template}
+        </div>
     </div>
-</div>`
+`
 
 const style = ``
+
 const eventHandlers = {
+
     hypotheticalCosChangeComponentHandler: () => {
         const spendEl = document.getElementById("cos-spend-value")
         const revenueEl = document.getElementById("cos-revenue-value")
