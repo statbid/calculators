@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypothetical cos change</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/2.0.10/autoNumeric.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* General Styles */
+        body {
+            background: linear-gradient(135deg, #f5faff, #0195ff);
+            animation: none;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container */
+        .cos_calculator_container {
+            display: flex;
+            justify-content: space-around;
+            max-width: 80%;
+            margin: 30px auto;
+            background-color: #f5f5f5;
+            border-radius: 33px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            min-height: 750px;
+        }
+
+        /* Titles */
+        .cos_calculator_title {
+            text-align: left;
+            margin-left: 11%;
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .cos_calculator_name_section {
+            margin-bottom: 90px;
+            margin-left: 7%;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        /* Input Section */
+        .cos_calculator_inputs {
+            width: 50% !important;
+            min-height: 643px;
+        }
+
+        .cos_calculator_input_section {
+            margin-bottom: 20px;
+        }
+
+        .cos_calculator_row {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 26px;
+        }
+
+        /* Labels */
+        .cos_calculator_label {
+            font-size: 27px;
+            color: #555;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Inputs */
+        .cos_calculator_input {
+            text-align: center;
+            margin-bottom: 50px;
+            width: 60%;
+            padding: 8px;
+            font-size: 27px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            background-color: #fff;
+        }
+
+        /* Results Section */
+        .cos_calculator_results {
+            width: 50%;
+            border-radius: 33px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0195ff;
+            color: #fff;
+        }
+
+        .gc_results {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .cos_calculator_results_row {
+            display: flex;
+            font-size: 26px;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Chart */
+
+
+
+
+        .resa {
+            height: 40%;
+            background-color: #005a9b;
+            display: flex;
+            padding-top: 20px;
+            width: 100%;
+
+            padding-bottom: 15px;
+            margin-inline: 50px !important;
+            justify-content: space-evenly;
+            border-top-left-radius: 33px;
+            border-top-right-radius: 35px;
+            align-items: center;
+        }
+
+        .resb {
+            height: 35%;
+            padding-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #pieChartMarginal,
+        #pieChartPaid {
+            height: 180px !important;
+            width: 180px !important;
+            margin-bottom: 25px;
+        }
+
+        #cosChartContainer {
+            width: 100%;
+            background-color: #ccc;
+        }
+
+        #cosChart {
+            min-width: 100%;
+
+            max-height: 230px;
+        }
+
+        .tog {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+            margin-top: 20px;
+        }
+
+        .pd {
+            text-align: center;
+            font-size: 22px;
+        }
+
+        @media (max-width: 1100px) {
+            .cos_calculator_inputs {
+                width: 30% !important;
+            }
+
+            .cos_calculator_results {
+                width: 70% !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cos_calculator_inputs {
+                width: 100% !important;
+            }
+
+            .cos_calculator_results {
+                width: 100% !important;
+            }
+
+            .resa {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .cos_calculator_title {
+                font-size: 35px;
+            }
+
+            .cos_calculator_name_section {
+                font-size: 22px;
+            }
+
+            .cos_calculator_label {
+                font-size: 21px !important;
+            }
+
+            .cos_calculator_input {
+                width: 74% !important;
+                font-size: 23px !important;
+            }
+
+            .tog {
+                flex-direction: column;
+                /* Stack buttons vertically */
+                align-items: center;
+                /* Center align */
+            }
+
+            .pd {
+                font-size: 21px;
+                /* Adjust font size */
+            }
+
+            body {
+                background: linear-gradient(135deg, #f5faff, #0195ff);
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Container */
+            .cos_calculator_container {
+                display: flex;
+                flex-direction: column;
+                /* Change to column for mobile */
+                align-items: center;
+                /* Center content */
+                max-width: 80%;
+                margin: 30px auto;
+                background-color: #f5f5f5;
+                border-radius: 33px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Titles */
+            .cos_calculator_title {
+                text-align: center;
+                font-size: 37px;
+                font-weight: bold;
+                margin-top: 22px;
+                color: #333;
+                margin-inline: 20px;
+            }
+        }
+
+        .cos_calculator_name_section {
+            margin-bottom: 30px;
+            margin-inline: 10px;
+            /* Adjust for better spacing */
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            /* Center section title */
+        }
+
+        /* Input Section */
+        .cos_calculator_inputs {
+            width: 100%;
+            /* Full width on mobile */
+        }
+
+        .cos_calculator_input_section {
+            margin-bottom: 20px;
+        }
+
+        .cos_calculator_row {
+            display: flex;
+            flex-direction: column;
+            /* Stack vertically */
+            align-items: center;
+            /* Center align */
+            margin-bottom: 10px;
+            font-size: 26px;
+        }
+
+        /* Labels */
+        .cos_calculator_label {
+            font-size: 27px;
+            color: #555;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Inputs */
+        .cos_calculator_input {
+            text-align: center;
+            margin-bottom: 30px;
+            /* Adjust for better spacing */
+            width: 80%;
+            /* Full width on mobile */
+            padding: 8px;
+            font-size: 27px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            background-color: #fff;
+        }
+
+        /* Results Section */
+        .cos_calculator_results {
+            width: 50%;
+            /* Full width on mobile */
+            border-radius: 33px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0195ff;
+            color: #fff;
+        }
+
+        .gc_results {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .cos_calculator_results_row {
+            display: flex;
+            flex-direction: column;
+            /* Stack vertically */
+            align-items: center;
+            /* Center align */
+            margin-bottom: 10px;
+            font-size: 26px;
+        }
+
+        /* Chart */
+        #pieChartMarginal,
+        #pieChartPaid {
+
+            margin-bottom: 15px;
+        }
+
+        #cosChartContainer {
+            width: 100%;
+            background-color: #ccc;
+
+        }
+
+        #cosChart {
+            min-width: 100%;
+            max-height: 230px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="cos_calculator_title">Hypothetical COS Calculator</h2>
+
+    <div class="cos_calculator_container">
+        <div class="cos_calculator_inputs">
+            <h3 class="cos_calculator_name_section">Business Metrics</h3>
+
+            <div class="cos_calculator_input_section">
+                <div class="cos_calculator_row">
+                    <label class="cos_calculator_label" for="budget_spend_value">Current Tier Spend</label>
+                    <input type="text" id="budget_spend_value" class="cos_calculator_input" value="$5000"
+                        onchange="calculateBudgetCOS()" oninput="formatdolInput(this)">
+                </div>
+                <div class="cos_calculator_row">
+                    <label class="cos_calculator_label" for="budget_revenue_value">Current Tier Revenue</label>
+                    <input type="text" id="budget_revenue_value" class="cos_calculator_input" value="$20000"
+                        onchange="calculateBudgetCOS()" oninput="formatdolInput(this)">
+                </div>
+                <div class="cos_calculator_row">
+                    <label class="cos_calculator_label" for="budget_current_cos_value">Current COS</label>
+                    <input type="text" id="budget_current_cos_value" class="cos_calculator_input" disabled>
+                </div>
+                <div class="cos_calculator_row">
+                    <label class="cos_calculator_label" for="budget_new_cos_value">Hypothetical New COS</label>
+                    <input type="text" id="budget_new_cos_value" class="cos_calculator_input" value="35%"
+                        onchange="calculateBudgetCOS()" oninput="formatPercentageInput(this)">
+                </div>
+            </div>
+        </div>
+
+        <div class="cos_calculator_results">
+            <div class="resa">
+                <div class="cos_calculator_results_row">
+                    <canvas id="pieChartPaid"></canvas>
+                    <span id="budget_icos" class="gc_results"></span>
+                    <span class="pd">Incremental COS</span>
+                </div>
+
+
+            </div>
+            <div id="cosChartContainer">
+                <canvas id="cosChart"></canvas>
+            </div>
+            <div class="resb">
+                <div class="tog">
+                    <div class="cos_calculator_results_row">
+                        <span class="pd">Hypothetical New Spend</span>
+                        <span id="budget_hns" class="gc_results"></span>
+                    </div>
+                    <div class="cos_calculator_results_row">
+                        <span class="pd"> Hypothetical New Revenue</span> <span id="budget_hnr"
+                            class="gc_results"></span>
+                    </div>
+
+
+                </div>
+
+                <div class="tog">
+                    <div class="cos_calculator_results_row">
+                        <span class="pd"> Incremental Spend</span><span id="budget_is" class="gc_results"></span>
+                    </div>
+                    <div class="cos_calculator_results_row">
+                        <span class="pd"> Incremental Revenue </span><span id="budget_ir" class="gc_results"></span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <script>
+
+        function formatPercentageInput(element) {
+            let value = element.value.replace(/[^0-9.-]+/g, "");
+            element.value = value + "%";
+        }
+        function formatdolInput(element) {
+            let value = element.value.replace(/[^0-9.-]+/g, "");
+            element.value = "$ " + value;
+        }
+        function calculateBudgetCOS() {
+            var spend = parseFloat(document.getElementById("budget_spend_value").value.replace(/[^0-9.-]+/g, ""));
+            var revenue = parseFloat(document.getElementById("budget_revenue_value").value.replace(/[^0-9.-]+/g, ""));
+            var newSpend = parseFloat(document.getElementById("budget_new_cos_value").value.replace(/[^0-9.-]+/g, "")) / 100;
+
+
+            var e = {
+                spend: spend,
+                revenue: revenue,
+                new: newSpend
+            };
+
+            e.current_cos = e.spend / e.revenue;
+            e.cos_hns = Math.pow(e.new / e.current_cos, 2) * e.spend;
+            e.cos_hnr = e.cos_hns / e.new;
+            e.cos_is = e.cos_hns - e.spend;
+            e.cos_ir = e.cos_hnr - e.revenue;
+            e.cos_icos = (e.cos_is / e.cos_ir) * 100;
+
+            // Display results
+            if (isFinite(e.cos_hns)) {
+                document.getElementById("budget_current_cos_value").value = (100 * e.current_cos).toFixed(2) + "%";
+                document.getElementById("budget_hns").innerHTML = "$" + e.cos_hns.toFixed(2);
+                document.getElementById("budget_hnr").innerHTML = "$" + e.cos_hnr.toFixed(2);
+                document.getElementById("budget_is").innerHTML = "$" + e.cos_is.toFixed(2);
+                document.getElementById("budget_ir").innerHTML = "$" + e.cos_ir.toFixed(2);
+                document.getElementById("budget_icos").innerHTML = e.cos_icos.toFixed(2) + "%";
+
+                updatePieCharts(e.cos_icos.toFixed(2));
+                updateCOSChart(e.spend, e.revenue, e.cos_hns, e.cos_hnr);
+            }
+        }
+
+        var marginalChart, paidChart;
+        function updatePieCharts(icos) {
+            const paidPercentage = icos;
+
+
+            const ctxPaid = document.getElementById('pieChartPaid').getContext('2d');
+            if (paidChart) {
+                paidChart.destroy();
+            }
+
+            if (paidPercentage < 0) {
+                paidChart = new Chart(ctxPaid, {
+                    type: 'pie',
+                    data: {
+                        datasets: [{
+                            data: [0, 100],
+                            backgroundColor: ['#2196F3', '#d6d6d6']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                        },
+                        animation: {
+                            onComplete: function (chart) {
+                                var width = chart.chart.width,
+                                    height = chart.chart.height,
+                                    ctx = chart.chart.ctx;
+                                ctx.restore();
+
+                                var fontSize = (height / 150).toFixed(2);
+                                ctx.font = "bold " + fontSize + "em sans-serif";
+                                ctx.textBaseline = "middle";
+                                ctx.fillStyle = "#0195ff";
+
+                                var text = " < 0%",
+                                    textX = Math.round((width - ctx.measureText(text).width) / 2),
+                                    textY = height / 1.9;
+
+                                ctx.fillText(text, textX, textY);
+                                ctx.save();
+                            }
+                        }
+                    }
+                });
+            }
+            else if (paidPercentage > 100) {
+                paidChart = new Chart(ctxPaid, {
+                    type: 'pie',
+                    data: {
+                        datasets: [{
+                            data: [100, 0],
+                            backgroundColor: ['#2196F3', '#d6d6d6']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                        },
+                        animation: {
+                            onComplete: function (chart) {
+                                var width = chart.chart.width,
+                                    height = chart.chart.height,
+                                    ctx = chart.chart.ctx;
+                                ctx.restore();
+
+                                var fontSize = (height / 150).toFixed(2);
+                                ctx.font = "bold " + fontSize + "em sans-serif";
+                                ctx.textBaseline = "middle";
+                                ctx.fillStyle = "white";
+
+                                var text = " > 100%",
+                                    textX = Math.round((width - ctx.measureText(text).width) / 2),
+                                    textY = height / 1.9;
+
+                                ctx.fillText(text, textX, textY);
+                                ctx.save();
+                            }
+                        }
+                    }
+                });
+            }
+            else {
+                paidChart = new Chart(ctxPaid, {
+                    type: 'pie',
+                    data: {
+                        datasets: [{
+                            data: [paidPercentage, 100 - paidPercentage],
+                            backgroundColor: ['#2196F3', '#d6d6d6']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                        },
+                    }
+                });
+            }
+        }
+
+
+
+        function updateCOSChart(spend, revenue, newSpend, newRevenue) {
+            var ctx = document.getElementById('cosChart').getContext('2d');
+
+            if (window.cosChart && typeof window.cosChart.destroy === 'function') {
+                window.cosChart.destroy();
+            }
+
+            var data = {
+                labels: ['Spend', 'Revenue'],
+                datasets: [
+                    {
+                        label: 'Current Spend vs Revenue',
+                        data: [spend, revenue],
+                        borderColor: '#ff0000',
+                        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                        pointBackgroundColor: '#ff0000',
+                        pointRadius: 8,
+                        borderWidth: 2,
+                        fill: false,
+                        tension: 0.3,
+                        type: 'line'
+                    },
+                    {
+                        label: 'New Spend vs Revenue',
+                        data: [newSpend, newRevenue],
+                        borderColor: '#00c853',
+                        backgroundColor: 'rgba(0, 200, 83, 0.2)',
+                        pointBackgroundColor: '#00c853',
+                        pointRadius: 8,
+                        borderWidth: 2,
+                        fill: false,
+                        tension: 0.3,
+                        type: 'line'
+                    }
+                ]
+            };
+
+            var options = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return `$${tooltipItem.raw.toLocaleString()}`;
+                            }
+                        },
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                        titleFont: { size: 14 },
+                        bodyFont: { size: 12 }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 14
+                            },
+                            boxWidth: 20
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Spend ($)',
+                            font: { size: 16 }
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)' // Soften the grid lines
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Revenue ($)',
+                            font: { size: 16 }
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)' // Soften the grid lines
+                        },
+                        ticks: {
+                            callback: function (value) {
+                                return `$${value.toLocaleString()}`;
+                            }
+                        }
+                    }
+                }
+            };
+
+            window.cosChart = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: options
+            });
+        }
+
+
+
+        $(document).ready(function () {
+            calculateBudgetCOS();
+            $('#budget_spend_value, #budget_revenue_value, #budget_new_cos_value').on('input', function () {
+                calculateBudgetCOS();
+            });
+        });
+    </script>
+</body>
+
+</html>
