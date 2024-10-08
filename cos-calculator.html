@@ -13,8 +13,9 @@
 </head>
 
 <body>
-    <h2 class="metric_calculator_title">COS Calculator</h2>
     <button onclick="window.location.href='./index.html'" class="back_button">←</button>
+
+    <h2 class="metric_calculator_title">COS Calculator</h2>
     <div id="metric_calculator">
 
         <section class="metric_calculator_inputs">
@@ -100,8 +101,6 @@
     </div>
 
     <style>
-      
-
         body {
             background: linear-gradient(135deg, #f5faff, #0195ff);
             animation: none;
@@ -127,13 +126,13 @@
 
         .metric_calculator_title {
             text-align: left;
-            margin-left: 11%;
-            margin-top: 4%;
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 2%;
-            font-family: sans-serif;
-            color: #333;
+    margin-left: 11%;
+    margin-top: 0%;
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 2%;
+    font-family: sans-serif;
+    color: #333;
         }
 
         .metric_calculator_divider {
@@ -229,38 +228,38 @@
             transform: scale(1.5);
             margin: 5px;
         }
+
         .back_button {
-        font-weight: 900;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #0195ff;
-    color: #ffffff;
-    padding-bottom: 6px;
-    padding-inline: 9px;
-    border: none;
-    border-radius: 28px;
-    cursor: pointer;
-    font-size: 36px;
-}
+            font-weight: 900;
+            background-color: #0195ff;
+            color: #ffffff;
+            padding-bottom: 6px;
+            padding-inline: 9px;
+            border: none;
+            border-radius: 28px;
+            cursor: pointer;
+            font-size: 36px;
+            margin-left: 2%;
+        }
 
-.back_button:hover {
-    background-color: #4fb5fd; /* Darker green */
-}
+        .back_button:hover {
+            background-color: #4fb5fd;
+            /* Darker green */
+        }
 
-/* Responsive design for different screen sizes */
-@media (max-width: 768px) {
-    .back_button {
-        font-size: 27px;        
-    }
-}
+        /* Responsive design for different screen sizes */
+        @media (max-width: 768px) {
+            .back_button {
+                font-size: 27px;
+            }
+        }
 
-@media (max-width: 480px) {
-    .back_button {
-        font-size: 20px; 
-       
-    }
-}
+        @media (max-width: 480px) {
+            .back_button {
+                font-size: 20px;
+
+            }
+        }
 
         @media (max-width: 768px) {
             .metric_calculator_switch label {

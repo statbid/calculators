@@ -9,11 +9,8 @@
 </head>
 
 <body>
-
-    <div class="bl_calculator_titel">Incrementality Test Budget & Length Calculator</div>
     <button onclick="window.location.href='./index.html'" class="back_button">←</button>
-
-
+    <div class="bl_calculator_titel">Incrementality Test Budget & Length Calculator</div>
     <div id="bl_calculator">
 
 
@@ -190,7 +187,7 @@
             animation: none;
             margin: 0;
             padding: 50px 0;
-            padding-top: 6% !important;
+            padding-top: 2% !important;
 
             font-family: Arial, sans-serif;
         }
@@ -211,12 +208,13 @@
 
         .bl_calculator_titel {
             text-align: center;
-            font-size: 42px;
-            font-weight: bold;
-            margin-bottom: 4%;
-            font-family: sans-serif;
-            margin-inline: 30px;
-            color: #333;
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 4%;
+    margin-top: 10px;
+    font-family: sans-serif;
+    margin-inline: 30px;
+    color: #333;
         }
 
 
@@ -318,38 +316,38 @@
             justify-content: flex-start;
             padding-top: 50px;
         }
+
         .back_button {
-        font-weight: 900;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #0195ff;
-    color: #ffffff;
-    padding-bottom: 6px;
-    padding-inline: 9px;
-    border: none;
-    border-radius: 28px;
-    cursor: pointer;
-    font-size: 36px;
-}
+            font-weight: 900;
+            background-color: #0195ff;
+            color: #ffffff;
+            padding-bottom: 6px;
+            padding-inline: 9px;
+            border: none;
+            border-radius: 28px;
+            cursor: pointer;
+            font-size: 36px;
+            margin-left: 2%;
+        }
 
-.back_button:hover {
-    background-color: #4fb5fd; /* Darker green */
-}
+        .back_button:hover {
+            background-color: #4fb5fd;
+            /* Darker green */
+        }
 
-/* Responsive design for different screen sizes */
-@media (max-width: 768px) {
-    .back_button {
-        font-size: 27px;        
-    }
-}
+        /* Responsive design for different screen sizes */
+        @media (max-width: 768px) {
+            .back_button {
+                font-size: 27px;
+            }
+        }
 
-@media (max-width: 480px) {
-    .back_button {
-        font-size: 20px; 
-       
-    }
-}
+        @media (max-width: 480px) {
+            .back_button {
+                font-size: 20px;
+
+            }
+        }
 
 
 
@@ -436,7 +434,7 @@
 
     <script>
 
-         function formatPercentageInput(element) {
+        function formatPercentageInput(element) {
             let value = element.value.replace(/[^0-9.-]+/g, "");
             element.value = value + "%";
         }
@@ -450,15 +448,15 @@
                 document.getElementById("tbl_yn_min").textContent = formatTime(0);
                 document.getElementById("tbl_yn_max").textContent = formatTime(0);
                 document.getElementById("tbl_le").textContent = formatTime(0);
-                return; 
+                return;
             }
 
-            
+
             function t(x) {
                 return 1.96 * x * Math.sqrt(amo / 60) * (amr / amo) / (roas * mtb / 30);
             }
 
-            
+
             var tbl_yn_min = Math.pow(t(1), 2);
             var tbl_yn_max = Math.pow(t(2), 2);
             var tbl_le = Math.pow(t(4), 2);
@@ -469,7 +467,7 @@
         }
 
         function formatTime(days) {
-            var years = Math.floor(days / 360); 
+            var years = Math.floor(days / 360);
 
             if (years > 10000) {
                 return "More than 10000 years";
@@ -477,7 +475,7 @@
 
             days %= 360;
             var months = Math.floor(days / 30);
-            days = Math.floor(days % 30); 
+            days = Math.floor(days % 30);
 
             var result = "";
             if (years > 0) {
