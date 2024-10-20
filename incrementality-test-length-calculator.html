@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incrementality Test Budget & Length Calculator</title>
+    <style>
+        body {
+            font-family: Lato, sans-serif;
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: #17235E;
+        }
+
+        #bl_calculator {
+            background-color: #ffffff;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bl_calculator_title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #17235E;
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .bl_calculator_inputs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            justify-content: space-between;
+            margin-left: 35px;
+        }
+
+        .bl_calculator_group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+        }
+
+        .bl_calculator_row {
+            display: flex;
+            flex-direction: column;
+            color: #4b5563;
+            font-size: 0.9rem;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .bl_calculator_row label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #17235E;
+            font-size: 0.9rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .tooltip-icon {
+            font-size: 0.8rem;
+            background-color: #1f2a6e;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            margin-left: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tooltip-icon:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 150%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2a6e;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 1;
+            z-index: 1;
+            pointer-events: none;
+            width: max-content;
+        }
+
+        .tooltip-icon::after {
+            content: '';
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cc {
+            text-align: left !important;
+        }
+
+        .section_title {
+            width: 100%;
+            font-weight: bold;
+            color: #17235E;
+            font-size: 1.15rem;
+            text-align: left;
+            margin-top: 10px;
+            padding-bottom: 5px;
+            border-bottom: 3px solid #e5e7eb;
+            margin-bottom: 19px;
+        }
+
+        .bl_calculator_cell input {
+            width: 80%;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            text-align: center;
+            padding: 10px;
+            font-size: 1rem;
+            color: #17235E;
+            font-weight: bold;
+            outline: none;
+        }
+
+        .bl_calculator_results {
+            border-top: 3px solid #e5e7eb;
+            padding-top: 20px;
+        }
+
+        .results_container {
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .results_header,
+        .results_row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            align-items: center;
+        }
+
+        .results_header {
+            margin-top: 10px;
+            height: 12px;
+        }
+
+        .results_row {
+            margin-top: 10px;
+            background-color: #1f2a6e;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 800;
+            border-radius: 21px;
+        }
+
+        .label,
+        .value {
+            flex: 1;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 1.1rem;
+        }
+
+        .value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Responsive design adjustments */
+        @media (max-width: 634px) {
+            .bl_calculator_inputs {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                margin-left: 0px !important;
+            }
+
+            .bl_calculator_group {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .bl_calculator_row {
+                width: 100%;
+                padding: 5px 0;
+                align-items: center;
+            }
+
+            .bl_calculator_cell input {
+                width: 100%;
+            }
+
+            /* Tooltip responsive adjustments */
+            .tooltip-icon:hover::after {
+                white-space: normal;
+                text-align: center;
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tooltip-icon:hover::after {
+                white-space: normal;
+                text-align: center;
+                max-width: 100px;
+            }
+            .cc {
+                text-align: center !important;
+            }
+
+            .results_header {
+                height: 25px;
+            }
+
+            .section_title {
+                font-size: 1.10rem;
+            }
+
+            .bl_calculator_title {
+                font-size: 1.3rem;
+            }
+
+            .results_header,
+            .results_row {
+                flex-direction: column;
+                font-size: 1rem;
+                padding: 10px 15px;
+                text-align: left;
+            }
+
+            .label,
+            .value {
+                width: 100%;
+                text-align: center;
+                padding: 8px 0;
+            }
+        }
+
+        .aa {
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bl_calculator">
+        <div class="bl_calculator_title">Incrementality Test Budget & Length Calculator</div>
+
+        <div class="bl_calculator_inputs">
+            <div class="bl_calculator_group">
+                <div class="section_title">Sitewide Metrics</div>
+                <div class="bl_calculator_row">
+                    <label>Average Monthly Revenue (US)
+                        <span class="tooltip-icon" data-tooltip="This is the average revenue generated each month.">?</span>
+                    </label>
+                    <div class="bl_calculator_cell">
+                        <input type="text" id="tbl_amr_value" value="$50,000" oninput="formatDollarInput(this)">
+                    </div>
+                </div>
+
+                <div class="bl_calculator_row">
+                    <label>Average Monthly Orders (US)
+                        <span class="tooltip-icon" data-tooltip="This is the average number of orders placed each month.">?</span>
+                    </label>
+                    <div class="bl_calculator_cell">
+                        <input type="number" id="tbl_amo_value" value="411" oninput="formatPercentageInput(this)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bl_calculator_group">
+                <div class="section_title">Test Parameters</div>
+                <div class="bl_calculator_row">
+                    <label>Expected ROAS
+                        <span class="tooltip-icon" data-tooltip="Expected return on ad spend during the test.">?</span>
+                    </label>
+                    <div class="bl_calculator_cell">
+                        <input type="number" id="tbl_roas_value" value="4" oninput="formatPercentageInput(this)">
+                    </div>
+                </div>
+
+                <div class="bl_calculator_row">
+                    <label>Monthly Test Budget
+                        <span class="tooltip-icon" data-tooltip="The amount you plan to spend on the test each month.">?</span>
+                    </label>
+                    <div class="bl_calculator_cell">
+                        <input type="text" id="tbl_mtb_value" value="$500" oninput="formatDollarInput(this)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bl_calculator_results">
+            <div class="results_container">
+                <div class="results_header">
+                    <div class="label cc aa">Expected Test Length</div>
+                    <div class="label mm aa">Min</div>
+                    <div class="label mm aa">Max</div>
+                </div>
+                <div class="results_row">
+                    <div class="label cc">Until Yes/No of added value:</div>
+                    <div class="value" id="tbl_yn_min">88 Days</div>
+                    <div class="value" id="tbl_yn_max">351 Days</div>
+                </div>
+                <div class="results_row">
+                    <div class="label cc">Until precise lift estimate:</div>
+                    <div class="value">Up To</div>
+                    <div class="value" id="tbl_le">1,402 Days</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function formatDollarInput(input) {
+            let value = input.value.replace(/[^0-9.]/g, "");
+            if (value) {
+                value = parseFloat(value).toLocaleString("en-US", {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                });
+            }
+            input.value = "$" + value;
+        }
+
+        function formatPercentageInput(element) {
+            let value = element.value.replace(/[^0-9.]+/g, "");
+            element.value = value;
+        }
+
+        function calculateGrowth() {
+            var amr = parseFloat(document.getElementById("tbl_amr_value").value.replace(/[^0-9.-]+/g, "")) || 0;
+            var amo = parseFloat(document.getElementById("tbl_amo_value").value.replace(/[^0-9.-]+/g, "")) || 0;
+            var roas = parseFloat(document.getElementById("tbl_roas_value").value.replace(/[^0-9.-]+/g, "")) || 0;
+            var mtb = parseFloat(document.getElementById("tbl_mtb_value").value.replace(/[^0-9.-]+/g, "")) || 0;
+
+            if (amo <= 0 || roas <= 0 || mtb <= 0) {
+                document.getElementById("tbl_yn_min").textContent = "0 Days";
+                document.getElementById("tbl_yn_max").textContent = "0 Days";
+                document.getElementById("tbl_le").textContent = "0 Days";
+                return;
+            }
+
+            function t(x) {
+                return 1.96 * x * Math.sqrt(amo / 60) * (amr / amo) / (roas * mtb / 30);
+            }
+
+            var tbl_yn_min = Math.pow(t(1), 2);
+            var tbl_yn_max = Math.pow(t(2), 2);
+            var tbl_le = Math.pow(t(4), 2);
+
+            document.getElementById("tbl_yn_min").textContent = formatTime(tbl_yn_min);
+            document.getElementById("tbl_yn_max").textContent = formatTime(tbl_yn_max);
+            document.getElementById("tbl_le").textContent = formatTime(tbl_le);
+        }
+
+        function formatTime(days) {
+            days = Math.floor(days);
+            if (days > 1000000000) {
+                return "More than 1,000,000,000 Days";
+            }
+            return days === 1 ? days + " Day" : days.toLocaleString("en-US") + " Days";
+        }
+
+        document.querySelectorAll("#bl_calculator input").forEach(function (input) {
+            input.addEventListener("input", calculateGrowth);
+        });
+
+        calculateGrowth();
+    </script>
+</body>
+
+</html>
