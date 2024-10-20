@@ -7,7 +7,7 @@
     <title>Marketing Calculators</title>
     <style>
         body {
-            background: linear-gradient(135deg, #f5faff, #0195ff);
+            background: #17235ee6;
             animation: none;
             margin: 0;
             padding: 0;
@@ -24,6 +24,8 @@
         }
 
         h1 {
+            font-size: 34px;
+            color: #17235E;
             text-align: center;
             margin-bottom: 30px;
         }
@@ -35,6 +37,7 @@
             border-radius: 8px;
             background-color: #f9f9f9;
             transition: transform 0.2s;
+            width: 90%;
         }
 
         .project:hover {
@@ -55,11 +58,18 @@
             display: inline-block;
             margin-top: 10px;
             text-decoration: none;
-            color: #007BFF;
+            color: #17235E;
+
         }
 
         .project a:hover {
             text-decoration: underline;
+        }
+
+        .pro {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         @media (min-width: 768px) {
@@ -100,30 +110,24 @@
 
     <div class="container">
         <h1>Marketing Calculators</h1>
+ 
+        <div class="pro">
+            <div class="project">
+                <h2><a href="./cos-roas-calculator.html">COS and ROAS Calculator</a></h2>
+                <p>This tool provides a comprehensive way to calculate the Cost of Sales (COS) by factoring in material costs, labor expenses, and operational overheads. It helps businesses assess the efficiency of their spending and optimize their Return on Ad Spend (ROAS).</p>
+            </div>
+            
+            <div class="project">
+                <h2><a href="./hypothetical-cos-budget-calculator.html">Hypothetical COS and Budget Change Calculator</a></h2>
+                <p>Explore how changes in your budget impact the overall financial picture with this calculator. It allows you to simulate variations in the Cost of Sales (COS) and evaluate their effects on profitability, enabling better-informed pricing and financial strategy decisions.</p>
+            </div>
+            
+            <div class="project">
+                <h2><a href="./incrementality-test-length-calculator.html">Incrementality Test Length Calculator</a></h2>
+                <p>Ensure accurate measurement of your marketing efforts with this tool. It helps determine the ideal length for an incrementality test, providing enough data to make statistically significant, data-driven decisions on campaign effectiveness.</p>
+            </div>
+            
 
-        <div class="project">
-            <h2><a href="./cos-calculator.html">COS Calculator</a></h2>
-            <p>This tool helps in calculating the cost of sales (COS) by taking into account different inputs such as
-                material costs, labor costs, and other operational expenses.</p>
-        </div>
-
-        <div class="project">
-            <h2><a href="./hypothetical-budget-change.html">Hypothetical Budget Change</a></h2>
-            <p>This project allows you to simulate the effects of different budget changes on overall financial
-                outcomes, helping in strategic financial planning.</p>
-        </div>
-
-        <div class="project">
-            <h2><a href="./hypothetical-cos-change.html">Hypothetical COS Change</a></h2>
-            <p>This tool simulates changes in the cost of sales (COS) to understand how different variables impact
-                profitability and pricing strategies.</p>
-        </div>
-
-        <div class="project">
-            <h2><a href="./incrementality-test-length.html">Incrementality Test Length</a></h2>
-            <p>Use this tool to estimate the optimal length of an incrementality test, ensuring that you gather
-                sufficient data to make statistically significant decisions.</p>
-        </div>
 
     </div>
 

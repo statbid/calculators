@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COS Calculator</title>
+    <style>
+        body {
+            font-family: Lato, sans-serif;
+            background-color: #f6f8fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .calculator-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 50%;
+            max-width: 800px;
+            border: 1px solid #e0e0e0;
+            box-sizing: border-box;
+        }
+
+        .calculator-title {
+            padding: 5px;
+            width: 165px;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: #17235E;
+            margin-bottom: 15px;
+            background-color: #f6f8fc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .calculator-title input[type="radio"] {
+            display: none;
+        }
+
+        .calculator-title label {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #17235E;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+            display: inline-block;
+        }
+
+        .calculator-title label:hover {
+            background-color: #e9ecf8;
+        }
+
+        .calculator-title input[type="radio"]:checked+label {
+            background-color: #ffffff;
+            color: #17235E;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+
+        .divider {
+            border-bottom: 3px solid #e0e0e0;
+            margin: 10px 0 15px;
+        }
+
+        .optimization-text {
+            width: 50%;
+            font-size: 19px;
+            color: #17235E;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .optimization-switch {
+            padding: 5px 15px;
+            width: 162px;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #17235E;
+            margin-bottom: 15px;
+            background-color: #f6f8fc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .optimization-switch input[type="radio"] {
+            display: none;
+        }
+
+        .optimization-switch label {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #17235E;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+            display: inline-block;
+        }
+
+        .optimization-switch label:hover {
+            background-color: #e9ecf8;
+        }
+
+        .optimization-switch input[type="radio"]:checked+label {
+            border-radius: 9px;
+            background-color: #ffffff;
+            color: #17235E;
+            font-weight: bold;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .input-label {
+            font-size: 18px;
+            color: #17235E;
+            margin-bottom: 5px;
+            font-weight: bold;
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+
+        .tooltip-icon {
+            font-size: 0.8rem;
+            background-color: #1f2a6e;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            margin-left: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tooltip-icon:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 150%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2a6e;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 1;
+            z-index: 1;
+            pointer-events: none;
+            width: max-content;
+        }
+
+        .tooltip-icon::after {
+            content: '';
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 20px;
+            background-color: #f6f8fc;
+            color: #17235E;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: #17235E;
+            outline: none;
+        }
+
+        .result-container {
+            display: flex;
+            margin-top: 20px;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .result-display {
+            display: inline-block;
+            background-color: #17235E;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .ttt {
+            display: flex;
+            align-items: center;
+        }
+
+        .tit {
+            font-size: 21px;
+            font-weight: bold;
+            color: #17235E;
+            padding-bottom: 11px;
+            margin-left: 11px;
+        }
+
+        .optt {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .ini {
+            width: 40%;
+            margin-bottom: 15px;
+        }
+
+        .ff {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        @media (max-width: 805px) {
+            body {
+                padding: 10px;
+            }
+
+            .calculator-container {
+                width: 100%;
+                padding: 15px;
+                box-sizing: border-box;
+            }
+
+            .tit {
+                text-align: center;
+            }
+
+            .input-grid {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .ff {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .ini {
+                margin-bottom: 25px;
+                width: 80%;
+                margin-right: 10px;
+            }
+
+            .result-container {
+                text-align: center;
+            }
+
+            .calculator-title {
+                font-size: 17px;
+            }
+
+            .optimization-switch label {
+                font-size: 15px;
+            }
+
+            .optimization-text {
+                font-size: 17px;
+            }
+
+            .input-label {
+                font-size: 17px;
+            }
+
+            .input-field {
+                font-size: 18px;
+            }
+
+            .result-display {
+                font-size: 21px;
+            }
+
+            /* Tooltip responsive adjustments */
+            .tooltip-icon:hover::after {
+                white-space: normal;
+                text-align: center;
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tooltip-icon:hover::after {
+                white-space: normal;
+                text-align: center;
+                max-width: 100px;
+            }
+            .optt {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .calculator-title {
+                font-size: 16px;
+            }
+
+            .input-field {
+                font-size: 18px;
+            }
+
+            .result-display {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator-container">
+        <div class="ttt">
+            <div class="calculator-title">
+                <input type="radio" id="cos" name="calculator-type" checked onchange="calculateCOS()">
+                <label for="cos">COS</label>
+                <input type="radio" id="roas" name="calculator-type" onchange="calculateCOS()">
+                <label for="roas">ROAS</label>
+            </div>
+            <span class="tit">Calculator</span>
+        </div>
+        <div class="divider"></div>
+        <div class="optt">
+            <div class="optimization-text">Optimize for Initial or Lifetime profit?</div>
+            <div class="optimization-switch">
+                <input type="radio" name="optimize" value="initial" id="initial" checked onchange="calculateCOS()">
+                <label for="initial">Initial</label>
+                <input type="radio" name="optimize" value="lifetime" id="lifetime" onchange="calculateCOS()">
+                <label for="lifetime">Lifetime</label>
+            </div>
+        </div>
+        <div class="input-grid">
+            <div class="ff">
+                <div class="ini">
+                    <span class="input-label">Average Order Value 
+                        <span class="tooltip-icon" data-tooltip="The average amount of an order in USD.">?</span>
+                    </span>
+                    <input type="text" id="orderValue" class="input-field" value="$200" onchange="calculateCOS()" oninput="formatDollar(this)">
+                </div>
+                <div class="ini">
+                    <span class="input-label">Average Lifetime Revenue 
+                        <span class="tooltip-icon" data-tooltip="The total revenue you expect to make over the customer's lifetime.">?</span>
+                    </span>
+                    <input type="text" id="lifetimeRevenue" class="input-field" value="$250" onchange="calculateCOS()" oninput="formatDollar(this)">
+                </div>
+            </div>
+            <div class="ff">
+                <div class="ini">
+                    <span class="input-label">Average Cost of Goods Sold 
+                        <span class="tooltip-icon" data-tooltip="The percentage cost of producing goods sold.">?</span>
+                    </span>
+                    <input type="text" id="costOfGoods" class="input-field" value="50%" onchange="calculateCOS()" oninput="formatPercent(this)">
+                </div>
+                <div class="ini">
+                    <span class="input-label">Average Shipping Costs 
+                        <span class="tooltip-icon" data-tooltip="The percentage of revenue used for shipping expenses.">?</span>
+                    </span>
+                    <input type="text" id="shippingCost" class="input-field" value="12%" onchange="calculateCOS()" oninput="formatPercent(this)">
+                </div>
+            </div>
+            <div class="ff">
+                <div class="ini">
+                    <span class="input-label">Average CC / Processing Fees 
+                        <span class="tooltip-icon" data-tooltip="Credit card or transaction processing fees.">?</span>
+                    </span>
+                    <input type="text" id="processingFees" class="input-field" value="2.9%" onchange="calculateCOS()" oninput="formatPercent(this)">
+                </div>
+                <div class="ini">
+                    <span class="input-label">Other Per-Transaction Expenses 
+                        <span class="tooltip-icon" data-tooltip="Any other costs per transaction (e.g., packaging).">?</span>
+                    </span>
+                    <input type="text" id="otherExpenses" class="input-field" value="0%" onchange="calculateCOS()" oninput="formatPercent(this)">
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="result-container">
+            <span class="input-label">Target Paid COS or ROAS:</span>
+            <span id="targetCOS" class="result-display">17.5%</span>
+        </div>
+    </div>
+
+    <script>
+        function formatDollar(input) {
+            let value = input.value.replace(/[^0-9.]/g, "");
+            if (value) {
+                input.value = "$" + parseFloat(value).toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+            } else {
+                input.value = "$0";
+            }
+        }
+
+        function formatDollarValue(value) {
+            value = parseFloat(value)
+            if (value > 1e15) {
+        return "More than $1,000,000,000,000,000";
+    }
+    // If the value exceeds 1 trillion
+    if (value >= 1e12) {
+        return "$" + (value / 1e12).toFixed(1) + " trillion";
+    }
+    // If the value exceeds 1 billion
+    else if (value >= 1e9) {
+        return "$" + (value / 1e9).toFixed(1) + " billion";
+    }
+    // If the value exceeds 1 million
+    else if (value >= 1e6) {
+        return "$" + (value / 1e6).toFixed(1) + " million";
+    }
+    // If the value exceeds 1 thousand
+    else if (value >= 1e3) {
+        return "$" + (value / 1e3).toFixed(1) + " thousand";
+    }
+    // For smaller values, format normally
+    else {
+        return "$" + value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }       
+        }
+
+        function formatPercent(input) {
+            let value = input.value.replace(/[^0-9.]/g, "");
+            input.value = value ? value + "%" : "0%";
+        }
+
+        function addRedBorderIfNegative(value, elementId) {
+    const element = document.getElementById(elementId);
+    if (value < 0) {
+        element.style.border = "4px solid red";
+    } else {
+        element.style.border = "none"; // Reset the border if value is not negative
+    }
+}
+
+        function calculateCOS() {
+            const orderValue = parseFloat(document.getElementById("orderValue").value.replace(/[^0-9.]/g, "")) || 0;
+            const lifetimeRevenue = parseFloat(document.getElementById("lifetimeRevenue").value.replace(/[^0-9.]/g, "")) || 0;
+            const costOfGoods = parseFloat(document.getElementById("costOfGoods").value.replace(/[^0-9.]/g, "")) / 100 || 0;
+            const shippingCost = parseFloat(document.getElementById("shippingCost").value.replace(/[^0-9.]/g, "")) / 100 || 0;
+            const processingFees = parseFloat(document.getElementById("processingFees").value.replace(/[^0-9.]/g, "")) / 100 || 0;
+            const otherExpenses = parseFloat(document.getElementById("otherExpenses").value.replace(/[^0-9.]/g, "")) / 100 || 0;
+            const isLifetime = document.getElementById("lifetime").checked;
+
+            const totalExpenses = costOfGoods + shippingCost + processingFees + otherExpenses;
+            const revenueBasis = isLifetime ? lifetimeRevenue / orderValue : 1;
+            const targetCOS = ((1 - totalExpenses) * revenueBasis) / 2;
+
+            const radioCOS = document.getElementById("cos").checked;
+            const displayValue = radioCOS ? (targetCOS * 100).toFixed(1) + "%" : formatDollarValue(1 / targetCOS);
+
+            if(radioCOS){
+                addRedBorderIfNegative((targetCOS * 100).toFixed(1), "targetCOS")
+            }
+            else{
+                addRedBorderIfNegative(1 / targetCOS, "targetCOS")
+            }
+
+            document.getElementById("targetCOS").textContent = displayValue;
+        }
+
+        document.querySelectorAll(".input-field").forEach(input => {
+            input.addEventListener("input", calculateCOS);
+        });
+
+        document.querySelectorAll("input[name='optimize'], input[name='calculator-type']").forEach(radio => {
+            radio.addEventListener("change", calculateCOS);
+        });
+
+        window.addEventListener("DOMContentLoaded", calculateCOS);
+    </script>
+</body>
+
+</html>
