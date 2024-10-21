@@ -17,6 +17,7 @@
         }
 
         .calculator-container {
+            margin-top: 50px;
             background-color: #ffffff;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -300,7 +301,6 @@
                 font-size: 21px;
             }
 
-            /* Tooltip responsive adjustments */
             .tooltip-icon:hover::after {
                 white-space: normal;
                 text-align: center;
@@ -314,6 +314,7 @@
                 text-align: center;
                 max-width: 100px;
             }
+
             .optt {
                 display: flex;
                 justify-content: space-around;
@@ -333,10 +334,34 @@
                 font-size: 20px;
             }
         }
+        .return-button {
+            position: absolute;
+            top: 17px;
+            left: 20px;
+            padding: 5px 20px 18px 20px;
+            background-color: #1f2a6e;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.7rem;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            height: 20px;
+        }
+
+        .return-button:hover {
+            background-color: #162057;
+        }
     </style>
 </head>
 
 <body>
+    <a href="./index.html" class="return-button">&larr;</a>
+
     <div class="calculator-container">
         <div class="ttt">
             <div class="calculator-title">
@@ -360,44 +385,53 @@
         <div class="input-grid">
             <div class="ff">
                 <div class="ini">
-                    <span class="input-label">Average Order Value 
+                    <span class="input-label">Average Order Value
                         <span class="tooltip-icon" data-tooltip="The average amount of an order in USD.">?</span>
                     </span>
-                    <input type="text" id="orderValue" class="input-field" value="$200" onchange="calculateCOS()" oninput="formatDollar(this)">
+                    <input type="text" id="orderValue" class="input-field" value="$200" onchange="calculateCOS()"
+                        oninput="formatDollar(this)">
                 </div>
                 <div class="ini">
-                    <span class="input-label">Average Lifetime Revenue 
-                        <span class="tooltip-icon" data-tooltip="The total revenue you expect to make over the customer's lifetime.">?</span>
+                    <span class="input-label">Average Lifetime Revenue
+                        <span class="tooltip-icon"
+                            data-tooltip="The total revenue you expect to make over the customer's lifetime.">?</span>
                     </span>
-                    <input type="text" id="lifetimeRevenue" class="input-field" value="$250" onchange="calculateCOS()" oninput="formatDollar(this)">
+                    <input type="text" id="lifetimeRevenue" class="input-field" value="$250" onchange="calculateCOS()"
+                        oninput="formatDollar(this)">
                 </div>
             </div>
             <div class="ff">
                 <div class="ini">
-                    <span class="input-label">Average Cost of Goods Sold 
+                    <span class="input-label">Average Cost of Goods Sold
                         <span class="tooltip-icon" data-tooltip="The percentage cost of producing goods sold.">?</span>
                     </span>
-                    <input type="text" id="costOfGoods" class="input-field" value="50%" onchange="calculateCOS()" oninput="formatPercent(this)">
+                    <input type="text" id="costOfGoods" class="input-field" value="50%" onchange="calculateCOS()"
+                        oninput="formatPercent(this)">
                 </div>
                 <div class="ini">
-                    <span class="input-label">Average Shipping Costs 
-                        <span class="tooltip-icon" data-tooltip="The percentage of revenue used for shipping expenses.">?</span>
+                    <span class="input-label">Average Shipping Costs
+                        <span class="tooltip-icon"
+                            data-tooltip="The percentage of revenue used for shipping expenses.">?</span>
                     </span>
-                    <input type="text" id="shippingCost" class="input-field" value="12%" onchange="calculateCOS()" oninput="formatPercent(this)">
+                    <input type="text" id="shippingCost" class="input-field" value="12%" onchange="calculateCOS()"
+                        oninput="formatPercent(this)">
                 </div>
             </div>
             <div class="ff">
                 <div class="ini">
-                    <span class="input-label">Average CC / Processing Fees 
+                    <span class="input-label">Average CC / Processing Fees
                         <span class="tooltip-icon" data-tooltip="Credit card or transaction processing fees.">?</span>
                     </span>
-                    <input type="text" id="processingFees" class="input-field" value="2.9%" onchange="calculateCOS()" oninput="formatPercent(this)">
+                    <input type="text" id="processingFees" class="input-field" value="2.9%" onchange="calculateCOS()"
+                        oninput="formatPercent(this)">
                 </div>
                 <div class="ini">
-                    <span class="input-label">Other Per-Transaction Expenses 
-                        <span class="tooltip-icon" data-tooltip="Any other costs per transaction (e.g., packaging).">?</span>
+                    <span class="input-label">Other Per-Transaction Expenses
+                        <span class="tooltip-icon"
+                            data-tooltip="Any other costs per transaction (e.g., packaging).">?</span>
                     </span>
-                    <input type="text" id="otherExpenses" class="input-field" value="0%" onchange="calculateCOS()" oninput="formatPercent(this)">
+                    <input type="text" id="otherExpenses" class="input-field" value="0%" onchange="calculateCOS()"
+                        oninput="formatPercent(this)">
                 </div>
             </div>
         </div>
@@ -421,28 +455,23 @@
         function formatDollarValue(value) {
             value = parseFloat(value)
             if (value > 1e15) {
-        return "More than $1,000,000,000,000,000";
-    }
-    // If the value exceeds 1 trillion
-    if (value >= 1e12) {
-        return "$" + (value / 1e12).toFixed(1) + " trillion";
-    }
-    // If the value exceeds 1 billion
-    else if (value >= 1e9) {
-        return "$" + (value / 1e9).toFixed(1) + " billion";
-    }
-    // If the value exceeds 1 million
-    else if (value >= 1e6) {
-        return "$" + (value / 1e6).toFixed(1) + " million";
-    }
-    // If the value exceeds 1 thousand
-    else if (value >= 1e3) {
-        return "$" + (value / 1e3).toFixed(1) + " thousand";
-    }
-    // For smaller values, format normally
-    else {
-        return "$" + value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }       
+                return "More than $1,000,000,000,000,000";
+            }
+            if (value >= 1e12) {
+                return "$" + (value / 1e12).toFixed(1) + " trillion";
+            }
+            else if (value >= 1e9) {
+                return "$" + (value / 1e9).toFixed(1) + " billion";
+            }
+            else if (value >= 1e6) {
+                return "$" + (value / 1e6).toFixed(1) + " million";
+            }
+            else if (value >= 1e3) {
+                return "$" + (value / 1e3).toFixed(1) + " thousand";
+            }
+            else {
+                return "$" + value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
         }
 
         function formatPercent(input) {
@@ -451,13 +480,13 @@
         }
 
         function addRedBorderIfNegative(value, elementId) {
-    const element = document.getElementById(elementId);
-    if (value < 0) {
-        element.style.border = "4px solid red";
-    } else {
-        element.style.border = "none"; // Reset the border if value is not negative
-    }
-}
+            const element = document.getElementById(elementId);
+            if (value < 0) {
+                element.style.border = "4px solid red";
+            } else {
+                element.style.border = "none"; 
+            }
+        }
 
         function calculateCOS() {
             const orderValue = parseFloat(document.getElementById("orderValue").value.replace(/[^0-9.]/g, "")) || 0;
@@ -475,10 +504,10 @@
             const radioCOS = document.getElementById("cos").checked;
             const displayValue = radioCOS ? (targetCOS * 100).toFixed(1) + "%" : formatDollarValue(1 / targetCOS);
 
-            if(radioCOS){
+            if (radioCOS) {
                 addRedBorderIfNegative((targetCOS * 100).toFixed(1), "targetCOS")
             }
-            else{
+            else {
                 addRedBorderIfNegative(1 / targetCOS, "targetCOS")
             }
 

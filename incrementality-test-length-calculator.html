@@ -28,6 +28,7 @@
             border: 1px solid #e5e7eb;
             display: flex;
             flex-direction: column;
+            margin-top: 50px;
         }
 
         .bl_calculator_title {
@@ -188,7 +189,6 @@
             font-weight: bold;
         }
 
-        /* Responsive design adjustments */
         @media (max-width: 634px) {
             .bl_calculator_inputs {
                 flex-direction: column;
@@ -212,7 +212,6 @@
                 width: 100%;
             }
 
-            /* Tooltip responsive adjustments */
             .tooltip-icon:hover::after {
                 white-space: normal;
                 text-align: center;
@@ -226,6 +225,7 @@
                 text-align: center;
                 max-width: 100px;
             }
+
             .cc {
                 text-align: center !important;
             }
@@ -261,10 +261,34 @@
         .aa {
             font-weight: 700;
         }
+
+        .return-button {
+            position: absolute;
+            top: 17px;
+            left: 20px;
+            padding: 5px 20px 18px 20px;
+            background-color: #1f2a6e;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.7rem;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            height: 20px;
+        }
+
+        .return-button:hover {
+            background-color: #162057;
+        }
     </style>
 </head>
 
 <body>
+    <a href="./index.html" class="return-button">&larr;</a>
     <div id="bl_calculator">
         <div class="bl_calculator_title">Incrementality Test Budget & Length Calculator</div>
 
@@ -273,7 +297,8 @@
                 <div class="section_title">Sitewide Metrics</div>
                 <div class="bl_calculator_row">
                     <label>Average Monthly Revenue (US)
-                        <span class="tooltip-icon" data-tooltip="This is the average revenue generated each month.">?</span>
+                        <span class="tooltip-icon"
+                            data-tooltip="This is the average revenue generated each month.">?</span>
                     </label>
                     <div class="bl_calculator_cell">
                         <input type="text" id="tbl_amr_value" value="$50,000" oninput="formatDollarInput(this)">
@@ -282,7 +307,8 @@
 
                 <div class="bl_calculator_row">
                     <label>Average Monthly Orders (US)
-                        <span class="tooltip-icon" data-tooltip="This is the average number of orders placed each month.">?</span>
+                        <span class="tooltip-icon"
+                            data-tooltip="This is the average number of orders placed each month.">?</span>
                     </label>
                     <div class="bl_calculator_cell">
                         <input type="number" id="tbl_amo_value" value="411" oninput="formatPercentageInput(this)">
@@ -303,7 +329,8 @@
 
                 <div class="bl_calculator_row">
                     <label>Monthly Test Budget
-                        <span class="tooltip-icon" data-tooltip="The amount you plan to spend on the test each month.">?</span>
+                        <span class="tooltip-icon"
+                            data-tooltip="The amount you plan to spend on the test each month.">?</span>
                     </label>
                     <div class="bl_calculator_cell">
                         <input type="text" id="tbl_mtb_value" value="$500" oninput="formatDollarInput(this)">
