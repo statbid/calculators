@@ -30,9 +30,12 @@
             max-width: 1200px;
             overflow: hidden;
             color: #17235E;
+            margin-top: 50px;
+
         }
 
-        .input-section, .chart-section {
+        .input-section,
+        .chart-section {
             padding: 20px;
         }
 
@@ -74,29 +77,29 @@
         }
 
         .tooltip-icon:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 100%; /* Position it directly above the label */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #1f2a6e;
-    color: white;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    opacity: 1;
-    z-index: 1;
-    pointer-events: none;
-    margin-bottom: 5px; /* Adds space between the tooltip and the label */
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for better visibility */
-}
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2a6e;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 1;
+            z-index: 1;
+            pointer-events: none;
+            margin-bottom: 5px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+        }
 
-.tooltip-icon::after {
-    content: '';
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+        .tooltip-icon::after {
+            content: '';
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
         .input-field {
             width: 45%;
@@ -151,7 +154,6 @@
             height: 400px;
         }
 
-        /* Styling the tabs */
         .tabs {
             display: flex;
             justify-content: flex-start;
@@ -193,7 +195,7 @@
             background-color: #e9ecf8;
         }
 
-        .tab-input:checked + .tab-label {
+        .tab-input:checked+.tab-label {
             background-color: #ffffff;
             color: #17235E;
             border-radius: 8px;
@@ -206,11 +208,11 @@
             margin-left: 7px;
         }
 
-        /* Responsive Design */
         @media (max-width: 1024px) {
             .input-section {
                 width: 50%;
             }
+
             .chart-section {
                 width: 50%;
             }
@@ -224,6 +226,7 @@
                 margin-top: 20px;
                 margin-right: 44px;
             }
+
             .input-group {
                 margin-right: 54px;
                 display: flex;
@@ -231,19 +234,23 @@
                 align-items: center;
                 margin-bottom: 20px;
             }
+
             .calculator-container {
                 flex-direction: column;
                 width: 100%;
             }
+
             .input-section {
                 width: 100%;
                 border-right: none;
                 border-bottom: 1px solid #e0e0e0;
             }
+
             .chart-section {
                 width: 100%;
                 height: 300px;
             }
+
             .chart-container {
                 margin-right: 34px;
                 height: 300px;
@@ -254,45 +261,74 @@
             .tooltip-icon:hover::after {
                 white-space: normal;
                 text-align: center;
-                max-width:400px;
+                max-width: 400px;
             }
+
             .input-group {
-        margin-right: 54px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        flex-direction: column;
-    }
+                margin-right: 54px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                flex-direction: column;
+            }
+
             .tab-label {
                 font-size: 14px;
                 width: auto;
                 padding: 8px;
             }
+
             .input-field {
                 margin-top: 8px;
                 font-size: 14px;
                 padding: 8px;
             }
+
             .result-value {
                 font-size: 16px;
                 padding: 8px 0;
             }
+
             .input-label {
                 font-size: 14px;
             }
+        }
+        .return-button {
+            position: absolute;
+            top: 17px;
+            left: 20px;
+            padding: 5px 20px 18px 20px;
+            background-color: #1f2a6e;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.7rem;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            height: 20px;
+        }
+
+        .return-button:hover {
+            background-color: #162057;
         }
     </style>
 </head>
 
 <body>
+    <a href="./index.html" class="return-button">&larr;</a>
+
     <div class="calculator-container">
         <div class="input-section">
             <div class="tabs">
                 <div class="tab-container">
                     <input type="radio" id="cos" name="tab" class="tab-input" checked onchange="switchCalculator();">
                     <label for="cos" class="tab-label">COS</label>
-                    
+
                     <input type="radio" id="budget" name="tab" class="tab-input" onchange="switchCalculator();">
                     <label for="budget" class="tab-label">Budget</label>
                 </div>
@@ -303,46 +339,57 @@
                 <div class="input-title">Business Metrics (COS)</div>
                 <div class="input-group">
                     <span class="input-label">Current Tier Spend
-                        <span class="tooltip-icon" data-tooltip="The current amount you're spending in this tier.">?</span>
+                        <span class="tooltip-icon"
+                            data-tooltip="The current amount you're spending in this tier.">?</span>
                     </span>
-                    <input type="text" id="current_spend_cos" class="input-field" value="$5,000" oninput="calculateCOS(); formatDollarInput(this)" >
+                    <input type="text" id="current_spend_cos" class="input-field" value="$5,000"
+                        oninput="calculateCOS(); formatDollarInput(this)">
                 </div>
                 <div class="input-group">
                     <span class="input-label">Current Tier Revenue
                         <span class="tooltip-icon" data-tooltip="The current revenue generated in this tier.">?</span>
                     </span>
-                    <input type="text" id="current_revenue_cos" class="input-field" value="$20,000" oninput="calculateCOS(); formatDollarInput(this)">
+                    <input type="text" id="current_revenue_cos" class="input-field" value="$20,000"
+                        oninput="calculateCOS(); formatDollarInput(this)">
                 </div>
                 <div class="input-group">
                     <span class="input-label">Current COS
-                        <span class="tooltip-icon" data-tooltip="The current Cost of Sales (COS) based on your spend and revenue.">?</span>
+                        <span class="tooltip-icon"
+                            data-tooltip="The current Cost of Sales (COS) based on your spend and revenue.">?</span>
                     </span>
                     <input type="text" id="current_cos" class="input-field result-field" disabled>
                 </div>
                 <div class="input-group">
                     <span class="input-label">Hypothetical New COS
-                        <span class="tooltip-icon" data-tooltip="Your hypothetical new COS percentage after adjustment.">?</span>
+                        <span class="tooltip-icon"
+                            data-tooltip="Your hypothetical new COS percentage after adjustment.">?</span>
                     </span>
-                    <input type="text" id="hypothetical_cos" class="input-field" value="35.00%" oninput="calculateCOS(); formatPercentageInput(this)">                </div>
+                    <input type="text" id="hypothetical_cos" class="input-field" value="35.00%"
+                        oninput="calculateCOS(); formatPercentageInput(this)">
+                </div>
             </div>
 
             <div id="budget-calculator" style="display:none;">
                 <div class="input-title">Business Metrics (Budget)</div>
                 <div class="input-group">
                     <span class="input-label">Current Tier Spend
-                        <span class="tooltip-icon" data-tooltip="The current amount you're spending in this tier.">?</span>
+                        <span class="tooltip-icon"
+                            data-tooltip="The current amount you're spending in this tier.">?</span>
                     </span>
-                    <input type="text" id="current_spend_budget" class="input-field" value="$5,000" oninput="calculateBudget(); formatDollarInput(this)">
+                    <input type="text" id="current_spend_budget" class="input-field" value="$5,000"
+                        oninput="calculateBudget(); formatDollarInput(this)">
                 </div>
                 <div class="input-group">
                     <span class="input-label">Current Tier Revenue
                         <span class="tooltip-icon" data-tooltip="The current revenue generated in this tier.">?</span>
                     </span>
-                    <input type="text" id="current_revenue_budget" class="input-field" value="$20,000" oninput="calculateBudget(); formatDollarInput(this)">
+                    <input type="text" id="current_revenue_budget" class="input-field" value="$20,000"
+                        oninput="calculateBudget(); formatDollarInput(this)">
                 </div>
                 <div class="input-group">
                     <span class="input-label">Current COS
-                        <span class="tooltip-icon" data-tooltip="The current Cost of Sales (COS) based on your spend and revenue.">?</span>
+                        <span class="tooltip-icon"
+                            data-tooltip="The current Cost of Sales (COS) based on your spend and revenue.">?</span>
                     </span>
                     <input type="text" id="current_cos_budget" class="input-field result-field" disabled>
                 </div>
@@ -350,7 +397,8 @@
                     <span class="input-label">Hypothetical New Spend
                         <span class="tooltip-icon" data-tooltip="The new amount you plan to spend.">?</span>
                     </span>
-                    <input type="text" id="hypothetical_spend" class="input-field" value="$7,500" oninput="calculateBudget(); formatDollarInput(this)">
+                    <input type="text" id="hypothetical_spend" class="input-field" value="$7,500"
+                        oninput="calculateBudget(); formatDollarInput(this)">
                 </div>
             </div>
 
@@ -386,7 +434,7 @@
     </div>
 
     <script>
-        
+
         function formatDollarInput(input) {
             let value = input.value.replace(/[^0-9.]/g, "");
             if (value) {
@@ -397,11 +445,11 @@
             }
             input.value = "$" + value;
         }
-        
+
         function formatPercentageInput(element) {
-    let value = element.value.replace(/[^0-9.]/g, "");
-    element.value = value ? value + "%" : "0%";
-}
+            let value = element.value.replace(/[^0-9.]/g, "");
+            element.value = value ? value + "%" : "0%";
+        }
         function switchCalculator() {
             const isCOSChecked = document.getElementById("cos").checked;
             document.getElementById("cos-calculator").style.display = isCOSChecked ? "block" : "none";
@@ -410,114 +458,107 @@
 
         function formatDollar(value) {
             value = parseFloat(value);
-    
-    // If the value exceeds 1 quadrillion
-    if (value > 1e15) {
-        return "More than $1,000,000,000,000,000";
-    }
-    // If the value exceeds 1 trillion
-    if (value >= 1e12) {
-        return "$" + (value / 1e12).toFixed(1) + " trillion";
-    }
-    // If the value exceeds 1 billion
-    else if (value >= 1e9) {
-        return "$" + (value / 1e9).toFixed(1) + " billion";
-    }
-    // If the value exceeds 1 million
-    else if (value >= 1e6) {
-        return "$" + (value / 1e6).toFixed(1) + " million";
-    }
-    // If the value exceeds 1 thousand
-    else if (value >= 1e3) {
-        return "$" + (value / 1e3).toFixed(1) + " thousand";
-    }
-    // For smaller values, format normally
-    else {
-        return "$" + value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }       
- }
+
+            if (value > 1e15) {
+                return "More than $1,000,000,000,000,000";
+            }
+            if (value >= 1e12) {
+                return "$" + (value / 1e12).toFixed(1) + " trillion";
+            }
+            else if (value >= 1e9) {
+                return "$" + (value / 1e9).toFixed(1) + " billion";
+            }
+            else if (value >= 1e6) {
+                return "$" + (value / 1e6).toFixed(1) + " million";
+            }
+            else if (value >= 1e3) {
+                return "$" + (value / 1e3).toFixed(1) + " thousand";
+            }
+            else {
+                return "$" + value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        }
         function switchCalculator() {
-    const isCOSChecked = document.getElementById("cos").checked;
-    
-    document.getElementById("cos-calculator").style.display = isCOSChecked ? "block" : "none";
-    document.getElementById("budget-calculator").style.display = isCOSChecked ? "none" : "block";
+            const isCOSChecked = document.getElementById("cos").checked;
 
-    // Call the appropriate calculation function to update the chart
-    if (isCOSChecked) {
-        calculateCOS();  // Update COS chart
-    } else {
-        calculateBudget();  // Update Budget chart
-    }
-}
+            document.getElementById("cos-calculator").style.display = isCOSChecked ? "block" : "none";
+            document.getElementById("budget-calculator").style.display = isCOSChecked ? "none" : "block";
 
-function addRedBorderIfNegative(value, elementId) {
-    const element = document.getElementById(elementId);
-    if (value < 0) {
-        element.style.border = "4px solid red";
-    } else {
-        element.style.border = "none"; // Reset the border if value is not negative
-    }
-}
+            if (isCOSChecked) {
+                calculateCOS();  
+            } else {
+                calculateBudget();  
+            }
+        }
 
-function calculateCOS() {
-    const currentSpend = parseFloat(document.getElementById("current_spend_cos").value.replace(/[^0-9.-]+/g, ""));
-    const currentRevenue = parseFloat(document.getElementById("current_revenue_cos").value.replace(/[^0-9.-]+/g, ""));
-    const hypotheticalCOS = parseFloat(document.getElementById("hypothetical_cos").value.replace(/[^0-9.-]+/g, "")) / 100;
+        function addRedBorderIfNegative(value, elementId) {
+            const element = document.getElementById(elementId);
+            if (value < 0) {
+                element.style.border = "4px solid red";
+            } else {
+                element.style.border = "none"; 
+            }
+        }
 
-    const currentCOS = currentSpend / currentRevenue;
-    const newSpend = Math.pow(hypotheticalCOS / currentCOS, 2) * currentSpend;
-    const newRevenue = newSpend / hypotheticalCOS;
-    const incrementalSpend = newSpend - currentSpend;
-    const incrementalRevenue = newRevenue - currentRevenue;
-    const incrementalCOS = (incrementalSpend / incrementalRevenue) * 100;
+        function calculateCOS() {
+            const currentSpend = parseFloat(document.getElementById("current_spend_cos").value.replace(/[^0-9.-]+/g, ""));
+            const currentRevenue = parseFloat(document.getElementById("current_revenue_cos").value.replace(/[^0-9.-]+/g, ""));
+            const hypotheticalCOS = parseFloat(document.getElementById("hypothetical_cos").value.replace(/[^0-9.-]+/g, "")) / 100;
 
-    document.getElementById("current_cos").value = (100 * currentCOS).toFixed(2) + "%";
-    document.getElementById("hypothetical_spend_result").innerHTML = formatDollar(newSpend.toFixed(2));
-    document.getElementById("hypothetical_revenue_result").innerHTML = formatDollar(newRevenue.toFixed(2));
-    document.getElementById("incremental_spend_result").innerHTML = formatDollar(incrementalSpend.toFixed(2));
-    document.getElementById("incremental_revenue_result").innerHTML = formatDollar(incrementalRevenue.toFixed(2));
-    document.getElementById("incremental_cos_result").innerHTML = incrementalCOS.toFixed(2) + "%";
+            const currentCOS = currentSpend / currentRevenue;
+            const newSpend = Math.pow(hypotheticalCOS / currentCOS, 2) * currentSpend;
+            const newRevenue = newSpend / hypotheticalCOS;
+            const incrementalSpend = newSpend - currentSpend;
+            const incrementalRevenue = newRevenue - currentRevenue;
+            const incrementalCOS = (incrementalSpend / incrementalRevenue) * 100;
 
-    // Add red borders if values are negative
-    addRedBorderIfNegative(currentCOS * 100, "current_cos");
-    addRedBorderIfNegative(newSpend, "hypothetical_spend_result");
-    addRedBorderIfNegative(newRevenue, "hypothetical_revenue_result");
-    addRedBorderIfNegative(incrementalSpend, "incremental_spend_result");
-    addRedBorderIfNegative(incrementalRevenue, "incremental_revenue_result");
-    addRedBorderIfNegative(incrementalCOS, "incremental_cos_result");
+            document.getElementById("current_cos").value = (100 * currentCOS).toFixed(2) + "%";
+            document.getElementById("hypothetical_spend_result").innerHTML = formatDollar(newSpend.toFixed(2));
+            document.getElementById("hypothetical_revenue_result").innerHTML = formatDollar(newRevenue.toFixed(2));
+            document.getElementById("incremental_spend_result").innerHTML = formatDollar(incrementalSpend.toFixed(2));
+            document.getElementById("incremental_revenue_result").innerHTML = formatDollar(incrementalRevenue.toFixed(2));
+            document.getElementById("incremental_cos_result").innerHTML = incrementalCOS.toFixed(2) + "%";
 
-    updateCOSChart(currentSpend, currentRevenue, newSpend, newRevenue, hypotheticalCOS * 100);
-}
+            // Add red borders if values are negative
+            addRedBorderIfNegative(currentCOS * 100, "current_cos");
+            addRedBorderIfNegative(newSpend, "hypothetical_spend_result");
+            addRedBorderIfNegative(newRevenue, "hypothetical_revenue_result");
+            addRedBorderIfNegative(incrementalSpend, "incremental_spend_result");
+            addRedBorderIfNegative(incrementalRevenue, "incremental_revenue_result");
+            addRedBorderIfNegative(incrementalCOS, "incremental_cos_result");
 
-function calculateBudget() {
-    const currentSpend = parseFloat(document.getElementById("current_spend_budget").value.replace(/[^0-9.-]+/g, ""));
-    const currentRevenue = parseFloat(document.getElementById("current_revenue_budget").value.replace(/[^0-9.-]+/g, ""));
-    const hypotheticalSpend = parseFloat(document.getElementById("hypothetical_spend").value.replace(/[^0-9.-]+/g, ""));
+            updateCOSChart(currentSpend, currentRevenue, newSpend, newRevenue, hypotheticalCOS * 100);
+        }
 
-    const currentCOS = (currentSpend / currentRevenue) * 100;
-    const hypotheticalCOS = Math.sqrt(hypotheticalSpend / currentSpend) * currentCOS;
-    const hypotheticalRevenue = (hypotheticalSpend / hypotheticalCOS) * 100;
-    const incrementalSpend = hypotheticalSpend - currentSpend;
-    const incrementalRevenue = hypotheticalRevenue - currentRevenue;
-    const incrementalCOS = (incrementalSpend / incrementalRevenue) * 100;
+        function calculateBudget() {
+            const currentSpend = parseFloat(document.getElementById("current_spend_budget").value.replace(/[^0-9.-]+/g, ""));
+            const currentRevenue = parseFloat(document.getElementById("current_revenue_budget").value.replace(/[^0-9.-]+/g, ""));
+            const hypotheticalSpend = parseFloat(document.getElementById("hypothetical_spend").value.replace(/[^0-9.-]+/g, ""));
 
-    document.getElementById("current_cos_budget").value = currentCOS.toFixed(2) + "%";
-    document.getElementById("hypothetical_spend_result").innerHTML = hypotheticalCOS.toFixed(2) + "%";
-    document.getElementById("hypothetical_revenue_result").innerHTML = formatDollar(hypotheticalRevenue.toFixed(2));
-    document.getElementById("incremental_spend_result").innerHTML = formatDollar(incrementalSpend.toFixed(2));
-    document.getElementById("incremental_revenue_result").innerHTML = formatDollar(incrementalRevenue.toFixed(2));
-    document.getElementById("incremental_cos_result").innerHTML = incrementalCOS.toFixed(2) + "%";
+            const currentCOS = (currentSpend / currentRevenue) * 100;
+            const hypotheticalCOS = Math.sqrt(hypotheticalSpend / currentSpend) * currentCOS;
+            const hypotheticalRevenue = (hypotheticalSpend / hypotheticalCOS) * 100;
+            const incrementalSpend = hypotheticalSpend - currentSpend;
+            const incrementalRevenue = hypotheticalRevenue - currentRevenue;
+            const incrementalCOS = (incrementalSpend / incrementalRevenue) * 100;
 
-    // Add red borders if values are negative
-    addRedBorderIfNegative(currentCOS, "current_cos_budget");
-    addRedBorderIfNegative(hypotheticalCOS, "hypothetical_spend_result");
-    addRedBorderIfNegative(hypotheticalRevenue, "hypothetical_revenue_result");
-    addRedBorderIfNegative(incrementalSpend, "incremental_spend_result");
-    addRedBorderIfNegative(incrementalRevenue, "incremental_revenue_result");
-    addRedBorderIfNegative(incrementalCOS, "incremental_cos_result");
+            document.getElementById("current_cos_budget").value = currentCOS.toFixed(2) + "%";
+            document.getElementById("hypothetical_spend_result").innerHTML = hypotheticalCOS.toFixed(2) + "%";
+            document.getElementById("hypothetical_revenue_result").innerHTML = formatDollar(hypotheticalRevenue.toFixed(2));
+            document.getElementById("incremental_spend_result").innerHTML = formatDollar(incrementalSpend.toFixed(2));
+            document.getElementById("incremental_revenue_result").innerHTML = formatDollar(incrementalRevenue.toFixed(2));
+            document.getElementById("incremental_cos_result").innerHTML = incrementalCOS.toFixed(2) + "%";
 
-    updateCOSChart(currentSpend, currentRevenue, hypotheticalSpend, hypotheticalRevenue, hypotheticalCOS);
-}
+            // Add red borders if values are negative
+            addRedBorderIfNegative(currentCOS, "current_cos_budget");
+            addRedBorderIfNegative(hypotheticalCOS, "hypothetical_spend_result");
+            addRedBorderIfNegative(hypotheticalRevenue, "hypothetical_revenue_result");
+            addRedBorderIfNegative(incrementalSpend, "incremental_spend_result");
+            addRedBorderIfNegative(incrementalRevenue, "incremental_revenue_result");
+            addRedBorderIfNegative(incrementalCOS, "incremental_cos_result");
+
+            updateCOSChart(currentSpend, currentRevenue, hypotheticalSpend, hypotheticalRevenue, hypotheticalCOS);
+        }
 
         function updateCOSChart(currentSpend, currentRevenue, hypotheticalSpend, hypotheticalRevenue, hypotheticalCOS) {
             const ctx = document.getElementById("cosChart").getContext("2d");
@@ -554,11 +595,11 @@ function calculateBudget() {
                             callbacks: {
                                 label: function (context) {
                                     let cosValue, spendValue, revenueValue;
-                                    if (context.dataIndex === 1) { // Current COS point
+                                    if (context.dataIndex === 1) { 
                                         cosValue = ((currentSpend / currentRevenue) * 100).toFixed(2);
                                         spendValue = currentSpend;
                                         revenueValue = currentRevenue;
-                                    } else if (context.dataIndex === 2) { // Hypothetical COS point
+                                    } else if (context.dataIndex === 2) { 
                                         cosValue = hypotheticalCOS.toFixed(2);
                                         spendValue = hypotheticalSpend;
                                         revenueValue = hypotheticalRevenue;
