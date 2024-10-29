@@ -508,7 +508,7 @@
                 addRedBorderIfNegative((targetCOS * 100).toFixed(1), "targetCOS")
             }
             else {
-                addRedBorderIfNegative(1 / targetCOS, "targetCOS")
+                addRedBorderIfNegative((1 / targetCOS).toFixed(2), "targetCOS")
             }
 
             document.getElementById("targetCOS").textContent = displayValue;
