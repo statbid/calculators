@@ -502,7 +502,7 @@
             const targetCOS = ((1 - totalExpenses) * revenueBasis) / 2;
 
             const radioCOS = document.getElementById("cos").checked;
-            const displayValue = radioCOS ? (targetCOS * 100).toFixed(1) + "%" : formatDollarValue(1 / targetCOS);
+            const displayValue = radioCOS ? (targetCOS * 100).toFixed(1) + "%" : 1 / targetCOS;
 
             if (radioCOS) {
                 addRedBorderIfNegative((targetCOS * 100).toFixed(1), "targetCOS")
