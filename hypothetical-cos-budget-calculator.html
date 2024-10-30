@@ -31,7 +31,6 @@
             overflow: hidden;
             color: #17235E;
             margin-top: 50px;
-
         }
 
         .input-section,
@@ -53,34 +52,27 @@
 
         .input-group {
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
 
         .input-label {
+            text-decoration: underline;
             font-size: 16px;
             color: #17235E;
             display: flex;
             align-items: center;
-        }
-
-        .tooltip-icon {
-            font-size: 0.8rem;
-            background-color: #1f2a6e;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            margin-left: 5px;
-            cursor: pointer;
             position: relative;
+            font-weight: bold;
         }
 
-        .tooltip-icon:hover::after {
-            content: attr(data-tooltip);
+        .input-label:hover::after {
+            content: attr(data-description);
             position: absolute;
-            bottom: 100%;
-            left: 50%;
+            bottom: 150%;
+            left: 110%;
             transform: translateX(-50%);
             background-color: #1f2a6e;
             color: white;
@@ -89,13 +81,13 @@
             font-size: 0.8rem;
             white-space: nowrap;
             opacity: 1;
-            z-index: 1;
+            z-index: 1000;
             pointer-events: none;
             margin-bottom: 5px;
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .tooltip-icon::after {
+        .input-label::after {
             content: '';
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -258,12 +250,13 @@
         }
 
         @media (max-width: 480px) {
-            .tooltip-icon:hover::after {
-                white-space: normal;
-                text-align: center;
-                max-width: 400px;
-            }
-
+            
+            .input-label:hover::after {
+            
+            left: 54%;
+            
+            
+        }
             .input-group {
                 margin-right: 54px;
                 display: flex;
@@ -338,31 +331,28 @@
             <div id="cos-calculator">
                 <div class="input-title">Business Metrics (COS)</div>
                 <div class="input-group">
-                    <span class="input-label">Current Tier Spend
-                        <span class="tooltip-icon"
-                            data-tooltip="The current amount you're spending in this tier.">?</span>
+                    <span class="input-label" data-description="The current amount you're spending in this tier.">
+                        Current Tier Spend
                     </span>
                     <input type="text" id="current_spend_cos" class="input-field" value="$5,000"
                         oninput="calculateCOS(); formatDollarInput(this)">
                 </div>
                 <div class="input-group">
-                    <span class="input-label">Current Tier Revenue
-                        <span class="tooltip-icon" data-tooltip="The current revenue generated in this tier.">?</span>
+                    <span class="input-label" data-description="The current revenue generated in this tier.">
+                        Current Tier Revenue
                     </span>
                     <input type="text" id="current_revenue_cos" class="input-field" value="$20,000"
                         oninput="calculateCOS(); formatDollarInput(this)">
                 </div>
                 <div class="input-group">
-                    <span class="input-label">Current COS
-                        <span class="tooltip-icon"
-                            data-tooltip="The current Cost of Sales (COS) based on your spend and revenue.">?</span>
+                    <span class="input-label" data-description="the COS based on your spend,revenue.">
+                        Current COS
                     </span>
                     <input type="text" id="current_cos" class="input-field result-field" disabled>
                 </div>
                 <div class="input-group">
-                    <span class="input-label">Hypothetical New COS
-                        <span class="tooltip-icon"
-                            data-tooltip="Your hypothetical new COS percentage after adjustment.">?</span>
+                    <span class="input-label" data-description="Hypothetical new COS percentage">
+                        Hypothetical New COS
                     </span>
                     <input type="text" id="hypothetical_cos" class="input-field" value="35.00%"
                         oninput="calculateCOS(); formatPercentageInput(this)">
@@ -372,30 +362,28 @@
             <div id="budget-calculator" style="display:none;">
                 <div class="input-title">Business Metrics (Budget)</div>
                 <div class="input-group">
-                    <span class="input-label">Current Tier Spend
-                        <span class="tooltip-icon"
-                            data-tooltip="The current amount you're spending in this tier.">?</span>
+                    <span class="input-label" data-description="The current amount you're spending in this tier.">
+                        Current Tier Spend
                     </span>
                     <input type="text" id="current_spend_budget" class="input-field" value="$5,000"
                         oninput="calculateBudget(); formatDollarInput(this)">
                 </div>
                 <div class="input-group">
-                    <span class="input-label">Current Tier Revenue
-                        <span class="tooltip-icon" data-tooltip="The current revenue generated in this tier.">?</span>
+                    <span class="input-label" data-description="The current revenue generated in this tier.">
+                        Current Tier Revenue
                     </span>
                     <input type="text" id="current_revenue_budget" class="input-field" value="$20,000"
                         oninput="calculateBudget(); formatDollarInput(this)">
                 </div>
                 <div class="input-group">
-                    <span class="input-label">Current COS
-                        <span class="tooltip-icon"
-                            data-tooltip="The current Cost of Sales (COS) based on your spend and revenue.">?</span>
+                    <span class="input-label" data-description="the COS based on your spend,revenue.">
+                        Current COS
                     </span>
                     <input type="text" id="current_cos_budget" class="input-field result-field" disabled>
                 </div>
                 <div class="input-group">
-                    <span class="input-label">Hypothetical New Spend
-                        <span class="tooltip-icon" data-tooltip="The new amount you plan to spend.">?</span>
+                    <span class="input-label" data-description="The new amount you plan to spend.">
+                        Hypothetical New Spend
                     </span>
                     <input type="text" id="hypothetical_spend" class="input-field" value="$7,500"
                         oninput="calculateBudget(); formatDollarInput(this)">
@@ -561,65 +549,75 @@
         }
 
         function updateCOSChart(currentSpend, currentRevenue, hypotheticalSpend, hypotheticalRevenue, hypotheticalCOS) {
-            const ctx = document.getElementById("cosChart").getContext("2d");
-            if (window.myCOSChart) window.myCOSChart.destroy();
+    const ctx = document.getElementById("cosChart").getContext("2d");
+    if (window.myCOSChart) window.myCOSChart.destroy();
 
-            window.myCOSChart = new Chart(ctx, {
-                type: "line",
-                data: {
-                    labels: [0, currentSpend.toFixed(0), hypotheticalSpend.toFixed(0)],
-                    datasets: [{
-                        label: "Revenue Curve",
-                        data: [0, currentRevenue, hypotheticalRevenue],
-                        borderColor: "#17235E",
-                        borderWidth: 2,
-                        fill: false,
-                        tension: 0.3,
-                        pointRadius: 10,
-                        pointBackgroundColor: ["#0066cc", "#0066cc"],
-                        pointBorderColor: ["#0066cc", "#0066cc"]
-                    }]
+    // Determine the order based on revenue
+    let labels, dataPoints, spendValues, revenueValues, cosValues;
+
+    if (currentRevenue <= hypotheticalRevenue) {
+        // Current has less or equal revenue, so draw it first
+        labels = [0, "Current", "Hypothetical"];
+        dataPoints = [0, currentRevenue, hypotheticalRevenue];
+        spendValues = [0, currentSpend, hypotheticalSpend];
+        revenueValues = [0, currentRevenue, hypotheticalRevenue];
+        cosValues = [0, (currentSpend / currentRevenue) * 100, hypotheticalCOS];
+    } else {
+        // Hypothetical has less revenue, so draw it first
+        labels = [0, "Hypothetical", "Current"];
+        dataPoints = [0, hypotheticalRevenue, currentRevenue];
+        spendValues = [0, hypotheticalSpend, currentSpend];
+        revenueValues = [0, hypotheticalRevenue, currentRevenue];
+        cosValues = [0, hypotheticalCOS, (currentSpend / currentRevenue) * 100];
+    }
+
+    window.myCOSChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Revenue Curve",
+                data: dataPoints,
+                borderColor: "#17235E",
+                borderWidth: 2,
+                fill: false,
+                tension: 0.3,
+                pointRadius: 10,
+                pointBackgroundColor: ["#0066cc", "#0066cc"],
+                pointBorderColor: ["#0066cc", "#0066cc"]
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: { display: true, text: "" }
                 },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            title: { display: true, text: "Spend" }
-                        },
-                        y: {
-                            title: { display: true, text: "Revenue" }
-                        }
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    let cosValue, spendValue, revenueValue;
-                                    if (context.dataIndex === 1) { 
-                                        cosValue = ((currentSpend / currentRevenue) * 100).toFixed(2);
-                                        spendValue = currentSpend;
-                                        revenueValue = currentRevenue;
-                                    } else if (context.dataIndex === 2) { 
-                                        cosValue = hypotheticalCOS.toFixed(2);
-                                        spendValue = hypotheticalSpend;
-                                        revenueValue = hypotheticalRevenue;
-                                    }
-
-                                    return [
-                                        `COS: ${cosValue}%`,
-                                        `Spend: $${spendValue.toLocaleString()}`,
-                                        `Revenue: $${revenueValue.toLocaleString()}`
-                                    ].map((text, index) => index === 0 ? text.toUpperCase() : text);
-                                }
-                            }
-                        },
-                        legend: {
-                            display: false
+                y: {
+                    title: { display: true, text: "Revenue" }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            const index = context.dataIndex;
+                            return [
+                                `COS: ${cosValues[index].toFixed(2)}%`,
+                                `Spend: $${spendValues[index].toLocaleString()}`,
+                                `Revenue: $${revenueValues[index].toLocaleString()}`
+                            ].map((text, idx) => idx === 0 ? text.toUpperCase() : text);
                         }
                     }
+                },
+                legend: {
+                    display: false
                 }
-            });
+            }
         }
+    });
+}
+
 
         window.onload = function () {
             calculateCOS();
