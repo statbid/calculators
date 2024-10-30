@@ -52,7 +52,7 @@
             font-size: 16px;
             color: #17235E;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 800;
             transition: background-color 0.3s, color 0.3s;
             display: inline-block;
         }
@@ -64,13 +64,14 @@
         .calculator-title input[type="radio"]:checked+label {
             background-color: #ffffff;
             color: #17235E;
-            border-radius: 8px;
+            border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            font-weight: bold;
+            font-weight: 800;
         }
 
         .divider {
-            border-bottom: 3px solid #e0e0e0;
+            border-bottom: 2px solid #e0e0e0;
+            border-radius: 11px;
             margin: 10px 0 15px;
         }
 
@@ -85,7 +86,7 @@
 
         .optimization-switch {
             padding: 5px 15px;
-            width: 162px;
+            width: 185px;
             display: flex;
             justify-content: center;
             gap: 0;
@@ -94,7 +95,7 @@
             color: #17235E;
             margin-bottom: 15px;
             background-color: #f6f8fc;
-            border-radius: 8px;
+            border-radius: 7px;
             overflow: hidden;
         }
 
@@ -107,7 +108,7 @@
             font-size: 16px;
             color: #17235E;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 800;
             transition: background-color 0.3s, color 0.3s;
             display: inline-block;
         }
@@ -117,10 +118,10 @@
         }
 
         .optimization-switch input[type="radio"]:checked+label {
-            border-radius: 9px;
+            border-radius: 8px;
             background-color: #ffffff;
             color: #17235E;
-            font-weight: bold;
+            font-weight: 800;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -134,11 +135,37 @@
         .input-label {
             font-size: 18px;
             color: #17235E;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: bold;
             text-align: left;
-            display: flex;
-            align-items: center;
+            display: inline-block;
+            text-decoration: underline;
+            position: relative;
+            
+        }
+
+        .input-label:hover::after {
+            content: attr(data-description);
+            position: absolute;
+            bottom: 150%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2a6e;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 1;
+            z-index: 1;
+            pointer-events: none;
+            width: max-content;
+        }
+
+        .input-label::after {
+            content: '';
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .tooltip-icon {
@@ -226,9 +253,11 @@
 
         .optt {
             display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-bottom: 25px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    margin-left: -4px;
+    margin-right: 10px;
         }
 
         .ini {
@@ -238,11 +267,14 @@
 
         .ff {
             width: 100%;
-            display: flex;
-            justify-content: space-around;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 37px;
+
         }
 
-        @media (max-width: 805px) {
+        @media (max-width: 905px) {
             body {
                 padding: 10px;
             }
@@ -306,6 +338,13 @@
                 text-align: center;
                 max-width: 200px;
             }
+            .optt {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 25px;
+    margin-inline: 22px;
+}
         }
 
         @media (max-width: 480px) {
@@ -356,6 +395,9 @@
         .return-button:hover {
             background-color: #162057;
         }
+        .kk{
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 
@@ -385,16 +427,15 @@
         <div class="input-grid">
             <div class="ff">
                 <div class="ini">
-                    <span class="input-label">Average Order Value
-                        <span class="tooltip-icon" data-tooltip="The average amount of an order in USD.">?</span>
+                    <span class="input-label" data-description="The average amount of an order in USD.">
+                        Average Order Value
                     </span>
                     <input type="text" id="orderValue" class="input-field" value="$200" onchange="calculateCOS()"
                         oninput="formatDollar(this)">
                 </div>
                 <div class="ini">
-                    <span class="input-label">Average Lifetime Revenue
-                        <span class="tooltip-icon"
-                            data-tooltip="The total revenue you expect to make over the customer's lifetime.">?</span>
+                    <span class="input-label" data-description="The total revenue you expect to make over the customer's lifetime.">
+                        Average Lifetime Revenue
                     </span>
                     <input type="text" id="lifetimeRevenue" class="input-field" value="$250" onchange="calculateCOS()"
                         oninput="formatDollar(this)">
@@ -402,16 +443,15 @@
             </div>
             <div class="ff">
                 <div class="ini">
-                    <span class="input-label">Average Cost of Goods Sold
-                        <span class="tooltip-icon" data-tooltip="The percentage cost of producing goods sold.">?</span>
+                    <span class="input-label" data-description="The percentage cost of producing goods sold.">
+                        Average Cost of Goods Sold
                     </span>
                     <input type="text" id="costOfGoods" class="input-field" value="50%" onchange="calculateCOS()"
                         oninput="formatPercent(this)">
                 </div>
                 <div class="ini">
-                    <span class="input-label">Average Shipping Costs
-                        <span class="tooltip-icon"
-                            data-tooltip="The percentage of revenue used for shipping expenses.">?</span>
+                    <span class="input-label" data-description="The percentage of revenue used for shipping expenses.">
+                        Average Shipping Costs
                     </span>
                     <input type="text" id="shippingCost" class="input-field" value="12%" onchange="calculateCOS()"
                         oninput="formatPercent(this)">
@@ -419,16 +459,15 @@
             </div>
             <div class="ff">
                 <div class="ini">
-                    <span class="input-label">Average CC / Processing Fees
-                        <span class="tooltip-icon" data-tooltip="Credit card or transaction processing fees.">?</span>
+                    <span class="input-label" data-description="Credit card or transaction processing fees.">
+                        Average CC / Processing Fees
                     </span>
                     <input type="text" id="processingFees" class="input-field" value="2.9%" onchange="calculateCOS()"
                         oninput="formatPercent(this)">
                 </div>
                 <div class="ini">
-                    <span class="input-label">Other Per-Transaction Expenses
-                        <span class="tooltip-icon"
-                            data-tooltip="Any other costs per transaction (e.g., packaging).">?</span>
+                    <span class="input-label" data-description="Any other costs per transaction (e.g., packaging).">
+                        Other Transaction Fees
                     </span>
                     <input type="text" id="otherExpenses" class="input-field" value="0%" onchange="calculateCOS()"
                         oninput="formatPercent(this)">
@@ -437,7 +476,7 @@
         </div>
         <div class="divider"></div>
         <div class="result-container">
-            <span class="input-label">Target Paid COS or ROAS:</span>
+            <span class="input-label kk">Target Paid COS or ROAS:</span>
             <span id="targetCOS" class="result-display">17.5%</span>
         </div>
     </div>
